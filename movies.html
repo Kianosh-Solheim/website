@@ -1,0 +1,281 @@
+<div style="
+  font-family: Georgia, serif;
+  background: #ffffff;
+  padding: 4rem 2rem;
+  width: 100%; /* Changed from 100vw to 100% for better adaptability and to prevent horizontal cutoff */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  box-sizing: border-box;
+  text-align: center;
+  animation: fadeIn 1.2s ease-out;
+  position: relative;">
+  <div class="lang-toggle-wrapper">
+  <button onclick="toggleLanguage()" title="Change Language" class="lang-toggle"></button>
+  <div class="lang-label" id="langLabel">Change Language</div>
+</div>
+  <script>
+  function toggleLanguage() {
+    const currentLang = localStorage.getItem('lang') || 'en';
+    const newLang = currentLang === 'en' ? 'no' : 'en';
+    localStorage.setItem('lang', newLang);
+    document.querySelectorAll('[data-en], [data-no]').forEach(el => {
+      el.textContent = el.getAttribute(`data-${newLang}`);
+    });
+    updateFlag(newLang);
+  }
+
+  function updateFlag(lang) {
+  const label = document.getElementById('langLabel');
+  if (label) {
+    label.textContent = lang === 'en' ? 'Change Language to Norwegian' : 'Change Language to English';
+  }
+    const flagUrl = lang === 'en'
+      ? 'https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Norway.svg'
+      : 'https://flagcdn.com/gb.svg';
+    const button = document.querySelector('button[onclick="toggleLanguage()"]');
+    if (button) {
+      button.style.backgroundImage = `url(${flagUrl})`;
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const lang = localStorage.getItem('lang') || 'en';
+    document.querySelectorAll('[data-en], [data-no]').forEach(el => {
+      el.textContent = el.getAttribute(`data-${lang}`);
+    });
+    updateFlag(lang);
+  });
+</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    .lang-toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: transparent;
+      color: transparent;
+      border: none;
+      border-radius: 50%;
+      width: 2rem;
+      height: 2rem;
+      cursor: pointer;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      opacity: 0.5;
+      transition: transform 0.4s ease, box-shadow 0.4s ease, opacity 0.4s ease;
+      z-index: 9999;
+    }
+    .lang-toggle:hover {
+      transform: rotate(360deg) scale(1.2);
+      box-shadow: 0 0 12px rgba(0,0,0,0.2);
+      opacity: 1;
+    }
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    .animated-button {
+      display: inline-block;
+      padding: 0.6rem 1.25rem;
+      background: #2e2e2e;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: normal;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+    .animated-button:hover {
+      background: #444444;
+      transform: scale(1.05);
+    }
+    .social-icons {
+      position: relative;
+    }
+    .social-icons a {
+      position: relative;
+      text-decoration: none;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 1.5rem;
+      color: #000000;
+      transition: transform 0.2s ease, color 0.3s ease, text-shadow 0.3s ease;
+    }
+    .social-icons a:hover {
+      transform: scale(1.25);
+      text-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    }
+    .social-icons a[title="Facebook"]:hover { color: #1877F2; }
+    .social-icons a[title="Instagram"]:hover { color: #E1306C; }
+    .social-icons a[title="LinkedIn"]:hover { color: #0077B5; }
+    .social-icons a[title="Bluesky"]:hover { color: #0A7AFF; }
+    .social-icons a[title="Threads"]:hover { color: #000000; text-shadow: 0 0 6px #000000; }
+    .social-icons a[title="Twitter"]:hover { color: #1DA1F2; }
+    .social-icons a::after {
+      content: attr(title);
+      font-size: 0.75rem;
+      color: #666;
+      margin-top: 0.3rem;
+      opacity: 0;
+      transform: translateY(5px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .social-icons a:hover::after {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  .lang-toggle-wrapper {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 9999;
+}
+.lang-label {
+  position: absolute;
+  top: 2.5rem;
+  right: 2.5rem;
+  white-space: nowrap;
+  z-index: 10000;
+  margin-top: 0.3rem;
+  background: rgba(0, 0, 0, 0.75);
+  color: white;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  opacity: 0;
+  transform: translateY(-5px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+.lang-toggle-wrapper:hover .lang-label {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Styles for Recommendations Page */
+.recommendations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjusted minmax for more compact covers */
+  gap: 1.5rem; /* Reduced gap for a tighter grid */
+  max-width: 1200px; /* Increased max-width to allow more columns */
+  margin-top: 3rem;
+  padding: 0 1rem;
+}
+
+.recommendation-card {
+  background: #f9f9f9;
+  border-radius: 10px;
+  padding: 0.75rem; /* Reduced padding to emphasize the image */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  text-align: center; /* Center content within the card */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex; /* Use flex to center the image vertically if needed */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Hide overflow for rounded corners on image */
+}
+
+.recommendation-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+.recommendation-card img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px; /* Apply border-radius to the image */
+  display: block;
+  object-fit: cover; /* Ensures the image covers the area without distortion */
+  width: 100%; /* Ensure image takes full width of card */
+  height: 280px; /* Fixed height for consistency in covers */
+}
+
+.back-button {
+  margin-top: 2rem;
+}
+
+.filter-buttons {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.filter-button {
+  padding: 0.5rem 1rem;
+  background: #e0e0e0;
+  color: #2e2e2e;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+  font-weight: normal;
+}
+
+.filter-button:hover {
+  background: #d0d0d0;
+}
+
+.filter-button.active {
+  background: #2e2e2e;
+  color: #ffffff;
+}
+</style>
+
+  <h1 style="font-size: 2.75rem; color: #000000; margin-bottom: 0.25rem; animation: fadeIn 1.5s ease-out;" data-en="Movie Covers" data-no="Filmplakater">Movie Covers</h1>
+  <p style="font-size: 1.25rem; color: #000000; margin-top: 0; animation: fadeIn 2s ease-out;" data-en="A gallery of my favorite movie posters!" data-no="Et galleri med mine favorittfilmplakater!">A gallery of my favorite movie posters!</p>
+
+  <a href="https://www.solheim.online/Recommendations" class="animated-button back-button" data-en="Back to All Recommendations" data-no="Tilbake til alle anbefalinger">Back to All Recommendations</a>
+
+  <div class="recommendations-grid">
+    <div class="recommendation-card">
+      <img src="https://m.media-amazon.com/images/I/71Y-0W9YkEL.jpg" alt="Everything Everywhere All at Once Movie Poster" onerror="this.onerror=null; this.src='https://placehold.co/400x225/E0E0E0/333333?text=Image+Not+Found';">
+    </div>
+    <div class="recommendation-card">
+      <img src="https://image.tmdb.org/t/p/original/tMefBSflR6PGQLv7WvYEh4OcFZQ.jpg" alt="Dune: Part Two Movie Poster" onerror="this.onerror=null; this.src='https://placehold.co/400x225/E0E0E0/333333?text=Image+Not+Found';">
+    </div>
+    <div class="recommendation-card">
+      <img src="https://image.tmdb.org/t/p/original/kXfqcdQKsjtN3ie2kj3dfAzUNFW.jpg" alt="Oppenheimer Movie Poster" onerror="this.onerror=null; this.src='https://placehold.co/400x225/E0E0E0/333333?text=Image+Not+Found';">
+    </div>
+    <div class="recommendation-card">
+      <img src="https://image.tmdb.org/t/p/original/8Gxv8gSFCU0mDGtgWTB0d2ysEo1.jpg" alt="Past Lives Movie Poster" onerror="this.onerror=null; this.src='https://placehold.co/400x225/E0E0E0/333333?text=Image+Not+Found';">
+    </div>
+    <div class="recommendation-card">
+      <img src="https://image.tmdb.org/t/p/original/rktQgeF3W90Q777F95S900lB0u3.jpg" alt="Anatomy of a Fall Movie Poster" onerror="this.onerror=null; this.src='https://placehold.co/400x225/E0E0E0/333333?text=Image+Not+Found';">
+    </div>
+    <div class="recommendation-card">
+      <img src="https://image.tmdb.org/t/p/original/aP0d8151V84f02T87F6n2568L3t.jpg" alt="Poor Things Movie Poster" onerror="this.onerror=null; this.src='https://placehold.co/400x225/E0E0E0/333333?text=Image+Not+Found';">
+    </div>
+    </div>
+
+  <footer style="
+    width: 100%;
+    text-align: center;
+    margin-top: 3rem;
+    padding: 2rem 1rem;
+    font-size: 0.9rem;
+    color: #666;
+    border-top: 1px solid #ccc;
+    background: #f9f9f9;
+  ">
+  <div class="social-icons" style="margin-bottom: 1rem; display: flex; justify-content: center; gap: 1rem;">
+    <a href="https://www.facebook.com/solheim.online/" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+    <a href="https://www.instagram.com/solheim.online" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.linkedin.com/in/kianosh-solheim" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+    <a href="https://bsky.app/profile/solheim.online" target="_blank" title="Bluesky"><i class="fas fa-cloud"></i></a>
+    <a href="https://www.threads.net/@solheim.online" target="_blank" title="Threads"><i class="fa-brands fa-threads"></i></a>
+    <a href="https://x.com/Kianosh_Solheim" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+  </div>
+  <img src="https://lh6.googleusercontent.com/ElUvbteB4826gt4NoppvPUqQUscbN8soMEPJzZQxhF-asJwwJE2rc1BZXx9r_L9JwAotylBK9ymfrQ3oKGXTRjjuKO6CdbeE9jQRyqXDSKYh1Hpt7FeCti9fkByrAE6ofA=w1280" alt="Personal Logo" style="margin: 0.5rem auto; max-width: 80px; border-radius: 0px; display: block;" />
+  <p style="margin-top: 0.5rem;">© 2025 Kianosh F. Solheim. All rights reserved.</p>
+</footer>
+</div>
