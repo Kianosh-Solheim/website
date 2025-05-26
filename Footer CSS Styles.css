@@ -1,0 +1,85 @@
+/* style.css (or inline in your HTML head) */
+
+/* Basic body styling to ensure footer positioning */
+body {
+    margin: 0;
+    font-family: Georgia, serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensures footer is at the bottom of the viewport */
+    background: #ffffff; /* Default background for the page */
+}
+
+/* Footer specific styles */
+footer {
+    width: 100%;
+    text-align: center;
+    margin-top: auto; /* Pushes footer to the bottom */
+    padding: 2rem 1rem;
+    font-size: 0.9rem;
+    color: #666;
+    border-top: 1px solid #ccc;
+    background: #f9f9f9;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+/* Social icons styling */
+.social-icons {
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.social-icons a {
+    position: relative;
+    text-decoration: none;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.5rem;
+    color: #000000;
+    transition: transform 0.2s ease, color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.social-icons a:hover {
+    transform: scale(1.25);
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Specific hover colors for social media icons */
+.social-icons a[title="Facebook"]:hover { color: #1877F2; }
+.social-icons a[title="Instagram"]:hover { color: #E1306C; }
+.social-icons a[title="LinkedIn"]:hover { color: #0077B5; }
+.social-icons a[title="Bluesky"]:hover { color: #0A7AFF; }
+.social-icons a[title="Threads"]:hover { color: #000000; text-shadow: 0 0 6px #000000; }
+.social-icons a[title="Twitter"]:hover { color: #1DA1F2; }
+
+/* Tooltip-like effect for social icons on hover */
+.social-icons a::after {
+    content: attr(title);
+    font-size: 0.75rem;
+    color: #666;
+    margin-top: 0.3rem;
+    opacity: 0;
+    transform: translateY(5px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.social-icons a:hover::after {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Styling for the personal logo image */
+.footer-logo {
+    margin: 0.5rem auto;
+    max-width: 80px;
+    border-radius: 0px;
+    display: block;
+}
+
+/* Copyright text styling */
+.copyright-text {
+    margin-top: 0.5rem;
+}
