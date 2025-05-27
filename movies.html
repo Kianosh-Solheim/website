@@ -17,10 +17,10 @@
             --shadow-light: rgba(0, 0, 0, 0.08);
             --shadow-hover: rgba(0, 0, 0, 0.12);
             --border-color: #ccc;
-            --lang-toggle-opacity: 0.5;
-            --lang-toggle-hover-opacity: 1;
-            --lang-label-bg: rgba(0, 0, 0, 0.75);
-            --lang-label-color: white;
+            --toggle-opacity: 0.5; /* Unified opacity for both toggles */
+            --toggle-hover-opacity: 1; /* Unified hover opacity */
+            --label-bg: rgba(0, 0, 0, 0.75); /* Unified label background */
+            --label-color: white; /* Unified label color */
             --social-icon-color: #000000;
             --footer-text-color: #666;
             --filter-button-bg: #e0e0e0;
@@ -33,7 +33,7 @@
         body {
             font-family: var(--font-family);
             background: var(--background-color);
-            padding: 4rem 2rem;
+            padding: 4rem 2rem; /* Default padding for larger screens */
             width: 100%;
             min-height: 100vh;
             display: flex;
@@ -45,6 +45,66 @@
             animation: fadeIn 1.2s ease-out;
             position: relative;
             margin: 0; /* Ensure no default body margin */
+        }
+
+        /* Home Button Wrapper - Fixed to the top left corner */
+        .home-button-wrapper {
+            position: fixed; /* Position relative to the viewport */
+            top: 1rem;
+            left: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 9999;
+        }
+        .home-button {
+            background: transparent;
+            border: none;
+            border-radius: 50%;
+            width: 2rem;
+            height: 2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none; /* Remove underline for the link */
+            opacity: var(--toggle-opacity); /* Faded initial state */
+            transition: transform 0.4s ease, box-shadow 0.4s ease, opacity 0.4s ease;
+            z-index: 9999;
+        }
+        .home-button:hover {
+            transform: rotate(360deg) scale(1.2);
+            box-shadow: 0 0 12px rgba(0,0,0,0.2);
+            opacity: var(--toggle-hover-opacity);
+        }
+        .home-button i {
+            font-size: 1.2rem; /* Size of the icon */
+            color: var(--text-color); /* Color of the icon */
+            transition: color 0.4s ease;
+        }
+        .home-button:hover i {
+            color: #000; /* Darken icon on hover if needed, or keep #333 */
+        }
+        .home-label {
+            position: absolute; /* Positioned relative to its parent .home-button-wrapper */
+            top: 2.5rem; /* Position below the icon */
+            left: 50%; /* Center horizontally */
+            transform: translateX(-50%); /* Adjust for own width */
+            white-space: nowrap;
+            z-index: 10000;
+            margin-top: 0.3rem; /* Space below the icon */
+            background: var(--label-bg);
+            color: var(--label-color);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            opacity: 0; /* Hidden initially */
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            pointer-events: none; /* Allows clicks to pass through to the button */
+        }
+        .home-button-wrapper:hover .home-label {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0); /* Combine with existing transform */
         }
 
         /* Language Toggle Wrapper - Fixed to the top right corner */
@@ -69,14 +129,15 @@
             background-repeat: no-repeat;
             background-position: center;
             background-size: cover;
-            opacity: var(--lang-toggle-opacity);
+            opacity: var(--toggle-opacity);
             transition: transform 0.4s ease, box-shadow 0.4s ease, opacity 0.4s ease;
+            z-index: 9999;
         }
 
         .lang-toggle:hover {
             transform: rotate(360deg) scale(1.2);
             box-shadow: 0 0 12px rgba(0,0,0,0.2);
-            opacity: var(--lang-toggle-hover-opacity);
+            opacity: var(--toggle-hover-opacity);
         }
 
         .lang-toggle:focus {
@@ -84,28 +145,28 @@
             outline-offset: 3px;
         }
 
-        /* Language Label - Fixed position, offset from the button */
+        /* Language Label - Positioned relative to its parent .lang-toggle-wrapper */
         .lang-label {
-            position: absolute; /* Position relative to the viewport */
-            top: 2.5rem; /* Adjusted to be below and slightly to the right of the button */
-            right: 2.5rem;
+            position: absolute; /* Positioned relative to its parent .lang-toggle-wrapper */
+            top: 2.5rem; /* Position below the icon */
+            left: 50%; /* Center horizontally */
+            transform: translateX(-50%); /* Adjust for own width */
             white-space: nowrap;
             z-index: 10000;
-            margin-top: 0.3rem;
-            background: var(--lang-label-bg);
-            color: var(--lang-label-color);
+            margin-top: 0.3rem; /* Space below the icon */
+            background: var(--label-bg);
+            color: var(--label-color);
             padding: 0.2rem 0.5rem;
             border-radius: 4px;
             font-size: 0.7rem;
             opacity: 0;
-            transform: translateY(-5px); /* Keep initial transform for fade-in effect */
             transition: opacity 0.3s ease, transform 0.3s ease;
             pointer-events: none; /* Allows clicks to pass through to elements behind it */
         }
 
         .lang-toggle-wrapper:hover .lang-label {
             opacity: 1;
-            transform: translateY(0); /* Remove translateX for original positioning */
+            transform: translateX(-50%) translateY(0); /* Combine with existing transform */
         }
 
         /* Keyframe for general fade-in */
@@ -207,7 +268,7 @@
         /* Styles for Recommendations Page */
         .recommendations-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Adjusted minmax for better adaptability */
             gap: 1.5rem;
             max-width: 1200px;
             margin-top: 3rem;
@@ -255,12 +316,12 @@
 
         .recommendation-card img {
             max-width: 100%;
-            height: auto;
+            height: auto; /* Allow height to adjust automatically */
+            aspect-ratio: 2/3; /* Maintain a common poster aspect ratio */
             border-radius: 8px;
             display: block;
-            object-fit: cover;
+            object-fit: cover; /* Crop image to fit the aspect ratio */
             width: 100%;
-            height: 280px;
         }
 
         .back-button {
@@ -317,9 +378,47 @@
             border-radius: 0px; /* Kept as original, change to 50% for circular */
             display: block;
         }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            body {
+                padding: 2rem 1rem; /* Reduce padding for tablets and smaller */
+            }
+            .home-button-wrapper, .lang-toggle-wrapper {
+                top: 0.5rem; /* Move buttons slightly closer to top edge */
+            }
+            .home-button-wrapper {
+                left: 0.5rem;
+            }
+            .lang-toggle-wrapper {
+                right: 0.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 1rem 0.5rem; /* Further reduce padding for mobile phones */
+            }
+            .recommendations-grid {
+                grid-template-columns: 1fr; /* Stack cards vertically on very small screens */
+                gap: 1rem; /* Reduce gap for tighter packing on very small screens */
+            }
+            /* Tooltip positioning for very small screens */
+            .home-label, .lang-label {
+                top: 2rem; /* Adjust tooltip position for smaller icons */
+                /* left: 50% and transform: translateX(-50%) already handle horizontal centering */
+            }
+        }
     </style>
 </head>
 <body>
+    <div class="home-button-wrapper">
+        <a href="https://www.solheim.online" class="home-button" title="Return to Home">
+            <i class="fas fa-house"></i>
+        </a>
+        <div class="home-label" id="homeLabel" data-en="Return to Home" data-no="Tilbake til Hjem">Return to Home</div>
+    </div>
+
     <div class="lang-toggle-wrapper">
         <button onclick="toggleLanguage()" title="Change Language" class="lang-toggle"></button>
         <div class="lang-label" id="langLabel">Change Language</div>
@@ -331,11 +430,21 @@
             const currentLang = localStorage.getItem('lang') || 'en';
             const newLang = currentLang === 'en' ? 'no' : 'en';
             localStorage.setItem('lang', newLang);
-            // Update text content for all elements with data-en or data-no attributes
+            applyLanguage(newLang); // Call a unified function to apply language
+        }
+
+        // Function to apply language to all relevant elements
+        function applyLanguage(lang) {
             document.querySelectorAll('[data-en], [data-no]').forEach(el => {
-                el.textContent = el.getAttribute(`data-${newLang}`);
+                el.textContent = el.getAttribute(`data-${lang}`);
             });
-            updateFlag(newLang); // Update the flag image and label text
+            updateFlag(lang); // Update the flag image and label text
+            
+            // Update home label language
+            const homeLabel = document.getElementById('homeLabel');
+            if (homeLabel) {
+                homeLabel.textContent = homeLabel.getAttribute(`data-${lang}`);
+            }
         }
 
         // Function to update the flag image and language label text
@@ -357,16 +466,12 @@
         // Event listener to set initial language and flag on DOM content loaded
         document.addEventListener('DOMContentLoaded', () => {
             const lang = localStorage.getItem('lang') || 'en'; // Get language from local storage or default to English
-            // Apply initial language to all elements
-            document.querySelectorAll('[data-en], [data-no]').forEach(el => {
-                el.textContent = el.getAttribute(`data-${lang}`);
-            });
-            updateFlag(lang); // Set the initial flag and label
+            applyLanguage(lang); // Apply initial language to all elements
         });
     </script>
 
     <main>
-        <h1 style="font-size: 2.75rem; color: #000000; margin-bottom: 0.25rem; animation: fadeIn 1.5s ease-out;" data-en="Movie and TV series recommendations" data-no="Film og TV-anbefalinger">Movie and TV series recommendations</h1>
+        <h1 data-en="Movie and TV series recommendations" data-no="Film og TV-anbefalinger">Movie and TV series recommendations</h1>
         <a href="Recommendations.html" class="animated-button back-button" data-en="Back to All Recommendations" data-no="Tilbake til alle anbefalinger">Back to All Recommendations</a>
 
         <div class="recommendations-grid">
