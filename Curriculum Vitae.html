@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+ <html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-en="Kianosh F. Solheim - Curriculum Vitae" data-no="Kianosh F. Solheim - Curriculum Vitae">Kianosh F. Solheim - Curriculum Vitae</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+  /* Base HTML and Body styles */
+  html, body {
+  height: 100%;
+  margin: 0;
+  font-family: Georgia, serif;
+  background: linear-gradient(135deg, #f0f2f5 0%, #e0e7ed 100%); /* Subtle gradient background */
+  color: #333;
+  line-height: 1.6;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-x: hidden; /* Prevent horizontal scroll due to animations */
+  }
+
+  /* Main content wrapper */
+  .cv-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #ffffff; /* Already white */
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  flex-grow: 1;
+  box-sizing: border-box;
+  opacity: 0; /* Initial state for fade-in */
+  animation: fadeIn 1s ease-out forwards;
+  }
+
+  /* Headings */
+  h1 {
+  text-align: center;
+  color: #2c3e50;
+  font-size: 2.8rem;
+  margin-bottom: 0.5rem;
+  animation: slideInFromTop 0.8s ease-out;
+  }
+
+  h2 {
+  color: #34495e;
+  font-size: 1.8rem;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 0.5rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1.5rem;
+  opacity: 0; /* Initial state for scroll animation */
+  transform: translateY(20px); /* Initial state for scroll animation */
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+  h2.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  }
+
+  h3 {
+  color: #555;
+  font-size: 1.3rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  }
+
+  /* Contact info at the top */
+  .contact-info {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+  color: #555;
+  opacity: 0; /* Initial state for fade-in */
+  animation: fadeIn 1.2s ease-out forwards;
+  animation-delay: 0.5s; /* Delay after main CV container */
+  }
+  .contact-info p {
+  margin: 0.3rem 0;
+  }
+  .contact-info a {
+  color: #3498db;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  }
+  .contact-info a:hover {
+  color: #2980b9;
+  text-decoration: underline;
+  }
+
+  /* Section styling */
+  section {
+  margin-bottom: 2rem;
+  }
+
+  /* List styling for education and experience */
+  ul {
+  list-style: none;
+  padding: 0;
+  }
+
+  ul li {
+  background: #ffffff; /* Changed to white */
+  padding: 1rem 1.5rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Slightly softer shadow for cleaner look */
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  opacity: 0; /* Initial state for scroll animation */
+  transform: translateX(-50px); /* Initial state for scroll animation */
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transition-delay: var(--stagger-delay, 0s); /* Staggered delay for list items */
+  }
+
+  ul li.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+  }
+
+  .item-content {
+  flex-grow: 1;
+  }
+
+  .item-content p {
+  margin: 0.2rem 0;
+  }
+
+  .item-content .date {
+  font-size: 0.9rem;
+  color: #777;
+  margin-top: 0.5rem;
+  }
+
+  .item-content .thesis-title {
+  font-style: italic;
+  color: #666;
+  }
+
+  .item-content .courses {
+  font-size: 0.9rem;
+  color: #888;
+  }
+
+  /* Institution/App Logo styling */
+  .institution-logo, .app-logo {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  object-fit: contain;
+  flex-shrink: 0;
+  /* Removed background-color and padding to ensure transparency */
+  opacity: 0; /* Initial state for scroll animation */
+  transform: scale(0.5); /* Initial state for scroll animation */
+  transition: opacity 0.6s ease-out, transform 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  transition-delay: var(--stagger-delay, 0s); /* Stagger with list item */
+  }
+  .institution-logo.is-visible, .app-logo.is-visible {
+  opacity: 1;
+  transform: scale(1);
+  }
+
+  /* Skills section */
+  .skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+  }
+
+  .skill-item {
+  background: #ffffff; /* Changed to white */
+  padding: 0.8rem;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: bold;
+  color: #2980b9;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Slightly softer shadow for cleaner look */
+  opacity: 0; /* Initial state for scroll animation */
+  transform: translateY(20px) scale(0.9); /* Initial state for scroll animation */
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  transition-delay: var(--stagger-delay, 0s);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  }
+  .skill-item.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  }
+
+  .skill-item:hover {
+  transform: translateY(-8px) scale(1.1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2), 0 0 25px rgba(41, 128, 185, 0.5);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+
+  .skill-item img {
+  width: 35px;
+  height: 35px;
+  margin-bottom: 0.5rem;
+  object-fit: contain;
+  border-radius: 4px;
+  }
+
+  /* Animations */
+  @keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+  }
+
+  @keyframes slideInFromTop {
+  0% { opacity: 0; transform: translateY(-30px); }
+  100% { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Language toggle button styles (reused from main page) */
+  .lang-toggle-wrapper {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 9999;
+  }
+  .lang-toggle {
+  background: transparent;
+  color: transparent;
+  border: none;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  opacity: 0.5;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, opacity 0.4s ease;
+  z-index: 9999;
+  }
+  .lang-toggle:hover {
+  transform: rotate(360deg) scale(1.2);
+  box-shadow: 0 0 12px rgba(0,0,0,0.2);
+  opacity: 1;
+  }
+  .lang-label {
+  position: absolute;
+  top: 2.5rem;
+  right: 2.5rem;
+  white-space: nowrap;
+  z-index: 10000;
+  margin-top: 0.3rem;
+  background: rgba(0, 0, 0, 0.75);
+  color: white;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  opacity: 0;
+  transform: translateY(-5px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+  }
+  .lang-toggle-wrapper:hover .lang-label {
+  opacity: 1;
+  transform: translateY(0);
+  }
+
+  /* Footer styling (reused from main page) */
+  footer {
+  width: 100%;
+  text-align: center;
+  margin-top: auto;
+  padding: 2rem 1rem;
+  font-size: 0.9rem;
+  color: #666;
+  border-top: 1px solid #ccc;
+  background: #f9f9f9;
+  box-sizing: border-box;
+  }
+  .footer-logo {
+  margin: 0.5rem auto;
+  max-width: 80px;
+  border-radius: 0px;
+  display: block;
+  }
+  .copyright-text {
+  margin-top: 0.5rem;
+  }
+  .social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  }
+  .social-icons a {
+  text-decoration: none;
+  color: #000000;
+  font-size: 1.5rem;
+  transition: transform 0.2s ease, color 0.3s ease, text-shadow 0.3s ease;
+  }
+  .social-icons a:hover {
+  transform: scale(1.25);
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  }
+  /* Specific hover colors for social media icons */
+  .social-icons a[title="Facebook"]:hover { color: #1877F2; }
+  .social-icons a[title="Instagram"]:hover { color: #E1306C; }
+  .social-icons a[title="LinkedIn"]:hover { color: #0077B5; }
+  .social-icons a[title="Bluesky"]:hover { color: #0A7AFF; }
+  .social-icons a[title="Threads"]:hover { color: #000000; text-shadow: 0 0 6px #000000; }
+  .social-icons a[title="Twitter"]:hover { color: #1DA1F2; }
+
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+  .cv-container {
+  margin: 1rem auto;
+  padding: 1rem;
+  }
+  h1 {
+  font-size: 2.2rem;
+  }
+  h2 {
+  font-size: 1.5rem;
+  }
+  ul li {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  }
+  .institution-logo {
+  margin-bottom: 0.5rem;
+  }
+  .skills-grid {
+  grid-template-columns: 1fr;
+  }
+  }
+  </style>
+ </head>
+ <body>
+  <div class="lang-toggle-wrapper">
+  <button onclick="toggleLanguage()" title="Change Language" class="lang-toggle"></button>
+  <div class="lang-label" id="langLabel">Change Language</div>
+  </div>
+
+  <div class="cv-container">
+  <h1 data-en="Curriculum Vitae" data-no="Curriculum Vitae">Curriculum Vitae</h1>
+
+  <div class="contact-info">
+  <p>Kianosh F. Solheim</p>
+  <p>Fantoftvegen 14F F45, 5075 Bergen, Hordaland, Norway</p>
+  <p><a href="mailto:Kianosh@Solheim.online">Kianosh@Solheim.online</a> | Mobile: (+47) 47200049 | Home: (+47) 40295362</p>
+  <p><a href="https://www.solheim.online" target="_blank">www.solheim.online</a> | Updated: 24 May 2025</p>
+  </div>
+
+  <section id="personal-details">
+  <h2 data-en="Personal Details" data-no="Personlige Opplysninger">Personal Details</h2>
+  <ul>
+  <li>
+  <div class="item-content">
+  <p><strong data-en="Born:" data-no="Født:">Born:</strong> 11.01.2002</p>
+  </div>
+  </li>
+  <li>
+  <div class="item-content">
+  <p><strong data-en="Languages:" data-no="Språk:">Languages:</strong> Norwegian (native), English (fluent)</p>
+  </div>
+  </li>
+  </ul>
+  </section>
+
+  <section id="education">
+  <h2 data-en="Education" data-no="Utdanning">Education</h2>
+  <ul>
+  <li>
+  <img src="https://media.snl.no/media/11669/standard_uib.png" alt="University of Bergen Logo" class="institution-logo">
+  <div class="item-content">
+  <h3><span data-en="Master's degree in Comparative Politics" data-no="Mastergrad i sammenlignende politikk">Master's degree in Comparative Politics</span>, University of Bergen</h3>
+  <p class="date">2025-2027</p>
+  <p class="thesis-title" data-en="Thesis Title: (To be determined)" data-no="Tittel på masteroppgave: (Ikke bestemt)">Thesis Title: (To be determined)</p>
+  </div>
+  </li>
+  <li>
+  <img src="https://media.snl.no/media/11669/standard_uib.png" alt="University of Bergen Logo" class="institution-logo">
+  <div class="item-content">
+  <h3><span data-en="Bachelor's degree in Comparative Politics" data-no="Bachelorgrad i sammenlignende politikk">Bachelor's degree in Comparative Politics</span>, University of Bergen</h3>
+  <p class="date">2022-2025</p>
+  <p class="thesis-title" data-en="Thesis Title: "The Elephant in the Room: How the GOP Paved the Way for Trump's Populism"" data-no="Tittel på bacheloroppgave: "The Elephant in the Room: How the GOP Paved the Way for Trump's Populism"">Thesis Title: "The Elephant in the Room: How the GOP Paved the Way for Trump's Populism"</p>
+  <p><strong data-en="Supervisor:" data-no="Veileder:">Supervisor:</strong> Jonas Linde (UiB)</p>
+  <p class="courses"><strong data-en="Courses:" data-no="Emner:">Courses:</strong> SAMPOL100 Introduction to Comparative Politics, SAMPOL103 Political ideologies, SAMPOL105 State and Nation Building, SAMPOL106 Political Institutions in Established Democracies, SAMPOL107 Political Mobilization, SAMPOL115 Democracy and Democratization, MET102 Methods in the Social Sciences, SAMPOL203 Comparative Arctic Indigenous Governance, SAMPOL226 Populism and its Consequences for Liberal Democracy, SAMPOL233 Forsvar og totalforsvar i etablerte demokrati, SAMPOL230 Party Politics in Europe and Beyond, SAMPOL235 The Politics and Global Governance of International Protection, SAMPOL238 The Politics of Contestation, SAMPOL260 Bachelor Essay in Comparative Politics</p>
+  </div>
+  </li>
+  </ul>
+  </section>
+
+  <section id="professional-experience">
+  <h2 data-en="Professional Experience" data-no="Yrkeserfaring">Professional Experience</h2>
+  <ul>
+  <li>
+  <img src="https://media.snl.no/media/17348/standard_FN-sambandet-logo.png" alt="United Nations Association of Norway Logo" class="institution-logo">
+  <div class="item-content">
+  <h3><span data-en="Intern" data-no="Praktikant">Intern</span>, United Nations Association of Norway</h3>
+  <p class="date">Jan 2025 - Jul 2025</p>
+  <p data-en="Unpaid internship as part of my Comparative Politics bachelor's degree (SAMPOL290 Comparative Politics Internship)" data-no="Ulønnet praksisplass som del av bachelorgraden i sammenlignende politikk (SAMPOL290 Praksis i sammenlignende politikk)">Unpaid internship as part of my Comparative Politics bachelor's degree (SAMPOL290 Comparative Politics Internship)</p>
+  </div>
+  </li>
+  </ul>
+  </section>
+
+  <section id="roles">
+  <h2 data-en="Roles" data-no="Roller">Roles</h2>
+  <ul>
+  <li>
+  <img src="https://placehold.co/60x60/cccccc/ffffff?text=SP" alt="Student Parliament Logo" class="institution-logo">
+  <div class="item-content">
+  <h3><span data-en="Representative on the University's Learning Environment Committee" data-no="Studentrepresentant i universitetets læringsmiljøutvalg">Representative on the University's Learning Environment Committee</span></h3>
+  <p class="date">2023-2025</p>
+  <p data-en="Elected by the Student Parliament for two terms: 1 Aug 2023-31 Jul 2024 & 1 Aug 2024-31 Jul 2025" data-no="Valgt av Studentparlamentet for to perioder: 1. august 2023-31. juli 2024 og 1. august 2024-31. juli 2025">Elected by the Student Parliament for two terms: 1 Aug 2023-31 Jul 2024 & 1 Aug 2024-31 Jul 2025</p>
+  </div>
+  </li>
+  <li>
+  <img src="http://googleusercontent.com/image_generation_content/28" alt="Sampolkonferansen Logo" class="institution-logo">
+  <div class="item-content">
+  <h3><span data-en="PR Committee Member" data-no="Medlem av PR-komiteen">PR Committee Member</span>, Sampolkonferansen, (Comparative Politics Conference)</h3>
+  <p class="date">2022-2023</p>
+  <p data-en="Contributed to public relations and marketing efforts, with responsibility for the website and other communication channels" data-no="Bidro til PR- og markedsføringsarbeidet, med ansvar for nettsiden og andre kommunikasjonskanaler">Contributed to public relations and marketing efforts, with responsibility for the website and other communication channels</p>
+  </div>
+  </li>
+  <li>
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm4mvh0jdZ2t9qtEHCCjhqnnxs-XecXbQr8g&s" alt="Social Democratic List Logo" class="institution-logo">
+  <div class="item-content">
+  <h3><span data-en="Head of the Social Democratic List" data-no="Listeleder for Sosialdemokratiske liste">Head of the Social Democratic List</span></h3>
+  <p class="date">2023-2024</p>
+  <p data-en="I was Head of the Social Democratic List at the University of Bergen Student Parliament, representing and coordinating the list's activities and initiatives from March 2023 to March 2024." data-no="Jeg var listeleder for sosialdemokratisk liste ved Studentparlamentet ved Universitetet i Bergen, og representerte samt koordinerte listens aktiviteter og initiativ fra mars 2023 til mars 2024.">I was Head of the Social Democratic List at the University of Bergen Student Parliament, representing and coordinating the list's activities and initiatives from March 2023 to March 2024.</p>
+  </div>
+  </li>
+  <li>
+  <img src="https://media.snl.no/media/63475/standard_auf.png" alt="Bergen AUF Logo" class="institution-logo">
+  <div class="item-content">
+  <h3><span data-en="Board Member" data-no="Styremedlem">Board Member</span>, Bergen AUF (Labour Party Youth Organisation)</h3>
+  <p class="date">2020-2024</p>
+  </div>
+  </li>
+  <li>
+  <img src="https://samskipnaden.imgix.net/foreninger/271707754_233769422243385_179932508120700312_n.png?w=3840&auto=compress,format" alt="A-STUD Logo" class="institution-logo">
+  <div class="item-content">
+  <h3><span data-en="Board Member" data-no="Styremedlem">Board Member</span>, A-STUD (Labour Party Student Group in Bergen)</h3>
+  <p class="date">2024-2025</p>
+  </div>
+  </li>
+  <li>
+  <img src="http://googleusercontent.com/image_generation_content/29" alt="The Architectural Uprising Bergen Logo" class="institution-logo">
+  <div class="item-content">
+  <h3><span data-en="Head of Communications" data-no="Kommunikasjonsansvarlig">Head of Communications</span>, The Architectural Uprising Bergen</h3>
+  <p class="date">2024-Present</p>
+  <p data-en="Responsible to key individuals, and for developing communication strategies for use on various political parties." data-no="Ansvarlig overfor sentrale personer og for å utvikle kommunikasjonsstrategier for bruk ovenfor ulike politiske partier.">Responsible to key individuals, and for developing communication strategies for use on various political parties.</p>
+  </div>
+  </li>
+  </ul>
+  </section>
+
+  <section id="skills">
+  <h2 data-en="Skills" data-no="Ferdigheter">Skills</h2>
+  <div class="skills-grid">
+  <div class="skill-item">
+  <span data-en="Writing and editing" data-no="Skriving og redigering">Writing and editing</span>
+  </div>
+  <div class="skill-item">
+  <span data-en="Research and analysis" data-no="Forskning og analyse">Research and analysis</span>
+  </div>
+  <div class="skill-item">
+  <span data-en="Communication" data-no="Kommunikasjon">Communication</span>
+  </div>
+  <div class="skill-item">
+  <span data-en="Speech writing" data-no="Taleskriving">Speech writing</span>
+  </div>
+  <div class="skill-item">
+  <span data-en="Project management" data-no="Prosjektledelse">Project management</span>
+  </div>
+  <div class="skill-item">
+  <span data-en="Public speaking and presentation" data-no="Offentlig taler og presentasjon">Public speaking and presentation</span>
+  </div>
+  <div class="skill-item">
+  <span data-en="Content creation and digital media" data-no="Innholdsproduksjon og digitale medier">Content creation and digital media</span>
+  </div>
+  <div class="skill-item">
+  <span data-en="Languages (fluent in Norwegian and English)" data-no="Språk (flytende i norsk og engelsk)">Languages (fluent in Norwegian and English)</span>
+  </div>
+
+  <div class="skill-item">
+  <img src="https://placehold.co/40x40/2a569a/ffffff?text=Word" alt="Microsoft Word Logo" class="app-logo">
+  <span data-en="Microsoft Word" data-no="Microsoft Word">Microsoft Word</span>
+  </div>
+  <div class="skill-item">
+  <img src="https://placehold.co/40x40/d24726/ffffff?text=PPT" alt="Microsoft PowerPoint Logo" class="app-logo">
+  <span data-en="Microsoft PowerPoint" data-no="Microsoft PowerPoint">Microsoft PowerPoint</span>
+  </div>
+  <div class="skill-item">
+  <img src="https://placehold.co/40x40/217346/ffffff?text=Excel" alt="Microsoft Excel Logo" class="app-logo">
+  <span data-en="Microsoft Excel" data-no="Microsoft Excel">Microsoft Excel</span>
+  </div>
+  <div class="skill-item">
+  <img src="https://placehold.co/40x40/0078d4/ffffff?text=Win" alt="Windows Logo" class="app-logo">
+  <span data-en="Windows" data-no="Windows">Windows</span>
+  </div>
+  <div class="skill-item">
+  <img src="https://placehold.co/40x40/000000/ffffff?text=MD" alt="Markdown Logo" class="app-logo">
+  <span data-en="Markdown" data-no="Markdown">Markdown</span>
+  </div>
+  <div class="skill-item">
+  <img src="https://placehold.co/40x40/4e2a84/ffffff?text=Obs" alt="Obsidian.md Logo" class="app-logo">
+  <span data-en="Obsidian.md" data-no="Obsidian.md">Obsidian.md</span>
+  </div>
+  </div>
+  </section>
+  </div>
+
+  <div id="footer-placeholder"></div>
+
+  <script>
+  // Language toggle functionality
+  function toggleLanguage() {
+  const currentLang = localStorage.getItem('lang') || 'en';
+  const newLang = currentLang === 'en' ? 'no' : 'en';
+  localStorage.setItem('lang', newLang);
+  document.querySelectorAll('[data-en], [data-no]').forEach(el => {
+  el.textContent = el.getAttribute(`data-${newLang}`);
+  });
+  updateFlag(newLang);
+  }
+
+  function updateFlag(lang) {
+  const label = document.getElementById('langLabel');
+  if (label) {
+  label.textContent = lang === 'en' ? 'Change Language to Norwegian' : 'Change Language to English';
+  }
+  const flagUrl = lang === 'en'
+  ? 'https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Norway.svg'
+  : 'https://flagcdn.com/gb.svg';
+  const button = document.querySelector('button[onclick="toggleLanguage()"]');
+  if (button) {
+  button.style.backgroundImage = `url(${flagUrl})`;
+  }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+  const lang = localStorage.getItem('lang') || 'en';
+  document.querySelectorAll('[data-en], [data-no]').forEach(el => {
+  el.textContent = el.getAttribute(`data-${lang}`);
+  });
+  updateFlag(lang);
+
+  // Intersection Observer for scroll animations
+  const observerOptions = {
+  root: null, /* viewport */
+  rootMargin: '0px',
+  threshold: 0.2 /* Trigger when 20% of the item is visible */
+  };
+
+  const observer = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+  if (entry.isIntersecting) {
+  const target = entry.target;
+  target.classList.add('is-visible');
+
+  // Apply staggered delays for children if applicable
+  if (target.tagName === 'SECTION') {
+  const animatedChildren = target.querySelectorAll('li, .skill-item, .institution-logo, .app-logo');
+  animatedChildren.forEach((child, index) => {
+  child.style.setProperty('--stagger-delay', `${index * 0.15}s`); /* Staggered reveal */
+  child.classList.add('is-visible'); // Add class to trigger their animations
+  });
+  }
+  observer.unobserve(target); // Stop observing once animated
+  }
+  });
+  }, observerOptions);
+
+  // Observe h2 headings and sections
+  document.querySelectorAll('h2, section ul li, section .skills-grid .skill-item').forEach(element => {
+  observer.observe(element);
+  });
+
+  // Observe logos separately if they are direct children of li/skill-item
+  document.querySelectorAll('.institution-logo, .app-logo').forEach(logo => {
+  observer.observe(logo);
+  });
+  });
+
+  // The HTML content for the footer, embedded directly in the script
+  const footerHtmlContent = `
+  <footer>
+  <div class="social-icons">
+  <a href="https://www.facebook.com/solheim.online/" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+  <a href="https://www.instagram.com/solheim.online" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+  <a href="https://www.linkedin.com/in/kianosh-solheim" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+  <a href="https://bsky.app/profile/solheim.online" target="_blank" title="Bluesky"><i class="fas fa-cloud"></i></a>
+  <a href="https://www.threads.net/@solheim.online" target="_blank" title="Threads"><i class="fa-brands fa-threads"></i></a>
+  <a href="https://x.com/Kianosh_Solheim" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+  </div>
+  <img src="https://lh6.googleusercontent.com/ElUvbteB4826gt4NoppvPUqQUscbN8soMEPJzZQxhF-asJwwJE2rc1BZXx9r_L9JwAotylBK9ymfrQ3oKGXTRjjuKO6CdbeE9jQRyqXDSKYh1Hpt7FeCti9fkByrAE6ofA=w1280" alt="Personal Logo" class="footer-logo" />
+  <p class="copyright-text">© 2025 Kianosh F. Solheim. All rights reserved.</p>
+  </footer>
+  `;
+
+  // Function to load the footer
+  function loadFooter() {
+  document.getElementById('footer-placeholder').innerHTML = footerHtmlContent;
+  }
+
+  // Call the function when the page content is loaded
+  document.addEventListener('DOMContentLoaded', loadFooter);
+  </script>
+ </body>
+ </html>
