@@ -211,46 +211,46 @@
   }
 
   .skill-item img:hover {
-      transform: scale(1.1); /* Slight zoom on hover */
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+  transform: scale(1.1); /* Slight zoom on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
   }
 
   /* Style for Font Awesome icons within skill items */
   .skill-item i {
-      font-size: 35px; /* Match the size of the images */
-      margin-bottom: 0.5rem;
-      color: #2980b9; /* Ensure consistent color with the text */
-      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Subtle shadow for elegance */
-      transition: transform 0.3s ease, text-shadow 0.3s ease, color 0.3s ease; /* Smooth transition */
+  font-size: 35px; /* Match the size of the images */
+  margin-bottom: 0.5rem;
+  color: #2980b9; /* Ensure consistent color with the text */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Subtle shadow for elegance */
+  transition: transform 0.3s ease, text-shadow 0.3s ease, color 0.3s ease; /* Smooth transition */
   }
 
   .skill-item i:hover {
-      transform: scale(1.1); /* Slight zoom on hover */
-      color: #3498db; /* Slightly brighter color on hover */
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+  transform: scale(1.1); /* Slight zoom on hover */
+  color: #3498db; /* Slightly brighter color on hover */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
   }
 
   /* Style for flag icons */
   .skill-item .flag-icon {
-      width: 35px;
-      height: 23px; /* Adjust height for aspect ratio of flags */
-      margin: 0 2px; /* Small margin between flags */
-      object-fit: cover; /* Changed to cover to ensure flags fill the space */
-      border: 1px solid #ccc; /* Optional: subtle border for flags */
-      border-radius: 6px; /* Increased border-radius for more rounded corners */
-      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15); /* Slightly more pronounced shadow */
-      transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+  width: 35px;
+  height: 23px; /* Adjust height for aspect ratio of flags */
+  margin: 0 2px; /* Small margin between flags */
+  object-fit: cover; /* Changed to cover to ensure flags fill the space */
+  border: 1px solid #ccc; /* Optional: subtle border for flags */
+  border-radius: 6px; /* Increased border-radius for more rounded corners */
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15); /* Slightly more pronounced shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
   }
   .skill-item .flag-icon:hover {
-      transform: scale(1.15); /* Slightly more zoom on hover */
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+  transform: scale(1.15); /* Slightly more zoom on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
   }
 
   .flag-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 0.5rem; /* Space between flags and text */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.5rem; /* Space between flags and text */
   }
 
   /* Animations */
@@ -264,57 +264,119 @@
   100% { opacity: 1; transform: translateY(0); }
   }
 
-  /* Language toggle button styles (reused from main page) */
+  /* Language toggle button styles */
   .lang-toggle-wrapper {
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  z-index: 9999;
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 9999;
   }
   .lang-toggle {
-  background: transparent;
-  color: transparent;
-  border: none;
-  border-radius: 50%;
-  width: 2rem;
-  height: 2rem;
-  cursor: pointer;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  opacity: 0.5;
-  transition: transform 0.4s ease, box-shadow 0.4s ease, opacity 0.4s ease;
-  z-index: 9999;
+    background: transparent;
+    color: transparent;
+    border: none;
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    opacity: 0.5;
+    transition: transform 0.4s ease, box-shadow 0.4s ease, opacity 0.4s ease;
+    z-index: 9999;
   }
   .lang-toggle:hover {
-  transform: rotate(360deg) scale(1.2);
-  box-shadow: 0 0 12px rgba(0,0,0,0.2);
-  opacity: 1;
+    transform: rotate(360deg) scale(1.2);
+    box-shadow: 0 0 12px rgba(0,0,0,0.2);
+    opacity: 1;
   }
   .lang-label {
-  position: absolute;
-  top: 2.5rem;
-  right: 2.5rem;
-  white-space: nowrap;
-  z-index: 10000;
-  margin-top: 0.3rem;
-  background: rgba(0, 0, 0, 0.75);
-  color: white;
-  padding: 0.2rem 0.5rem;
-  border-radius: 4px;
-  font-size: 0.7rem;
-  opacity: 0;
-  transform: translateY(-5px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  pointer-events: none;
+    position: absolute;
+    top: 2.5rem;
+    right: 2.5rem; /* Adjusted to sit next to the home label if needed */
+    white-space: nowrap;
+    z-index: 10000;
+    margin-top: 0.3rem;
+    background: rgba(0, 0, 0, 0.75);
+    color: white;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    opacity: 0;
+    transform: translateY(-5px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
   }
   .lang-toggle-wrapper:hover .lang-label {
-  opacity: 1;
-  transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
   }
+
+  /* New Home button styles (mirroring language switcher) */
+  .home-button-wrapper {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 9999;
+  }
+  .home-button {
+    background: transparent;
+    border: none;
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none; /* Remove underline for the link */
+    opacity: 0.5; /* Faded initial state */
+    transition: transform 0.4s ease, box-shadow 0.4s ease, opacity 0.4s ease;
+    z-index: 9999;
+  }
+  .home-button:hover {
+    transform: rotate(360deg) scale(1.2);
+    box-shadow: 0 0 12px rgba(0,0,0,0.2);
+    opacity: 1;
+  }
+  .home-button i {
+    font-size: 1.2rem; /* Size of the icon */
+    color: #333; /* Color of the icon */
+    transition: color 0.4s ease;
+  }
+  .home-button:hover i {
+    color: #000; /* Darken icon on hover if needed, or keep #333 */
+  }
+
+  .home-label {
+    position: absolute;
+    top: 2.5rem; /* Position below the icon */
+    left: 2.5rem; /* Position next to the icon, adjust as needed */
+    white-space: nowrap;
+    z-index: 10000;
+    margin-top: 0.3rem;
+    background: rgba(0, 0, 0, 0.75);
+    color: white;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    opacity: 0; /* Hidden initially */
+    transform: translateY(-5px); /* Slight lift animation */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none; /* Allows clicks to pass through to the button */
+  }
+  .home-button-wrapper:hover .home-label {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
 
   /* PDF Download Buttons */
   .pdf-download-section {
@@ -351,28 +413,28 @@
   }
 
   .pdf-button {
-    background-color: #3498db;
-    color: white;
-    padding: 0.6rem 1.2rem; /* Reduced padding */
+    background-color: #333333; /* Dark background color from the home button */
+    color: white; /* White text color from the home button */
+    padding: 0.6rem 1.2rem; /* Consistent padding */
     border: none;
-    border-radius: 6px; /* Slightly smaller border-radius */
-    font-size: 0.9rem; /* Smaller font size for buttons */
+    border-radius: 8px; /* Rounded corners from the home button */
+    font-size: 0.9rem; /* Slightly smaller font size for these buttons */
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
     display: flex;
     align-items: center;
-    gap: 0.4rem; /* Reduced gap */
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* Softer shadow */
+    gap: 0.4rem; /* Space between icon and text */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* Consistent shadow */
   }
 
   .pdf-button:hover {
-    background-color: #2980b9;
-    transform: translateY(-2px); /* Smaller lift on hover */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Softer hover shadow */
+    background-color: #555555; /* Slightly lighter dark grey on hover */
+    transform: translateY(-2px); /* Consistent lift on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Consistent hover shadow */
   }
 
   .pdf-button i {
-    font-size: 1rem; /* Smaller icon size */
+    font-size: 1rem; /* Icon size */
     margin-bottom: 0; /* Override skill-item i margin */
     text-shadow: none; /* Override skill-item i text-shadow */
   }
@@ -422,7 +484,6 @@
   .social-icons a[title="Threads"]:hover { color: #000000; text-shadow: 0 0 6px #000000; }
   .social-icons a[title="Twitter"]:hover { color: #1DA1F2; }
 
-
   /* Responsive adjustments */
   @media (max-width: 768px) {
   .cv-container {
@@ -446,10 +507,29 @@
   .skills-grid {
   grid-template-columns: 1fr;
   }
+  .lang-toggle-wrapper {
+  top: 0.5rem;
+  right: 0.5rem;
+  }
+  .home-button-wrapper {
+  top: 0.5rem;
+  left: 0.5rem;
+  }
+  .home-label, .lang-label {
+    top: 2rem; /* Adjust tooltip position for smaller icons */
+    left: 2rem;
+  }
   }
   </style>
  </head>
  <body>
+  <div class="home-button-wrapper">
+    <a href="https://www.solheim.online" class="home-button" title="Return to Home">
+      <i class="fas fa-house"></i>
+    </a>
+    <div class="home-label" id="homeLabel" data-en="Return to Home" data-no="Tilbake til Hjem">Return to Home</div>
+  </div>
+
   <div class="lang-toggle-wrapper">
   <button onclick="toggleLanguage()" title="Change Language" class="lang-toggle"></button>
   <div class="lang-label" id="langLabel">Change Language</div>
@@ -649,7 +729,6 @@
 
   <div id="footer-placeholder"></div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <script>
   // Language toggle functionality
   function toggleLanguage() {
@@ -667,9 +746,9 @@
   }
 
   function updateFlag(lang) {
-  const label = document.getElementById('langLabel');
-  if (label) {
-  label.textContent = lang === 'en' ? 'Change Language to Norwegian' : 'Change Language to English';
+  const langLabel = document.getElementById('langLabel');
+  if (langLabel) {
+  langLabel.textContent = lang === 'en' ? 'Change Language to Norwegian' : 'Change Language to English';
   }
   const flagUrl = lang === 'en'
   ? 'https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Norway.svg'
@@ -678,7 +757,14 @@
   if (button) {
   button.style.backgroundImage = `url(${flagUrl})`;
   }
+
+  // Update home label language
+  const homeLabel = document.getElementById('homeLabel');
+  if (homeLabel) {
+    homeLabel.textContent = homeLabel.getAttribute(`data-${lang}`);
   }
+  }
+
 
   document.addEventListener('DOMContentLoaded', () => {
   const lang = localStorage.getItem('lang') || 'en';
@@ -721,35 +807,15 @@
   });
   });
 
-  // Function to generate PDF
-  async function generatePdf(targetLang) {
-    const cvContainer = document.querySelector('.cv-container');
-    const originalLang = localStorage.getItem('lang') || 'en';
-
-    // Temporarily apply the target language for PDF generation
-    applyLanguage(targetLang);
-
-    // Options for html2pdf
-    const options = {
-      margin: 10,
-      filename: `Kianosh_Solheim_CV_${targetLang.toUpperCase()}.pdf`,
-      image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: { scale: 2, logging: true, dpi: 192, letterRendering: true },
-      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-    };
-
-    // Generate PDF
-    try {
-      await html2pdf().from(cvContainer).set(options).save();
-      console.log(`PDF for ${targetLang.toUpperCase()} CV generated successfully.`);
-    } catch (error) {
-      console.error('Error generating PDF:', error);
-      // You could display a user-friendly message here instead of alert()
-      // For example, update a div with an error message.
-    } finally {
-      // Revert to the original display language
-      applyLanguage(originalLang);
+  // Function to generate PDF (now opens actual files)
+  function generatePdf(targetLang) {
+    let pdfUrl;
+    if (targetLang === 'en') {
+      pdfUrl = 'https://solheim.online/KIANOSH F SOLHEIM CV EN.pdf'; // ENGLISH PDF URL
+    } else {
+      pdfUrl = 'https://solheim.online/KIANOSH F SOLHEIM CV NO.pdf'; // NORWEGIAN PDF URL
     }
+    window.open(pdfUrl, '_blank'); // Open PDF in a new tab
   }
 
 
