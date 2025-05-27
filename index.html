@@ -49,7 +49,7 @@
             color: #666;
             border-top: 1px solid #ccc;
             background: #f9f9f9;
-            box-sizing: border-sizing;
+            box-sizing: border-box; /* Corrected typo: border-sizing to border-box */
         }
 
         /* Social icons styling (for both main content and footer) */
@@ -59,6 +59,8 @@
             display: flex;
             justify-content: center;
             gap: 1rem;
+            margin-top: 2.5rem; /* Applied directly here */
+            animation: fadeIn 3s ease-out; /* Applied directly here */
         }
 
         .social-icons a {
@@ -94,6 +96,7 @@
             opacity: 0;
             transform: translateY(5px);
             transition: opacity 0.3s ease, transform 0.3s ease;
+            pointer-events: none;
         }
 
         .social-icons a:hover::after {
@@ -215,34 +218,25 @@
             margin-top: 2rem;
             animation: fadeIn 2.5s ease-out;
         }
-        #about {
+        section { /* Applying general section styles */
             max-width: 700px;
             margin-top: 3rem;
-            text-align: left; /* Keep text left-aligned within the about section */
+            text-align: left;
             color: #000000;
-            animation: fadeIn 3.25s ease-out;
+            animation: fadeIn 3.25s ease-out; /* Adjusted animation delay for sections */
         }
-        #about h2 {
+        section h2 {
             color: #000000;
-            font-size: 1.75rem;
+            font-size: 1.75rem; /* Adjusted for consistency */
             margin-bottom: 1rem;
         }
-        #about p {
+        section p {
             font-size: 1rem;
             line-height: 1.6;
             color: #000000;
         }
-        #contact {
-            max-width: 700px;
-            margin-top: 3rem;
-            text-align: left; /* Ensure text is left-aligned within the contact section */
-            color: #000000;
-            animation: fadeIn 3.5s ease-out;
-        }
-        #contact h2 {
-            color: #000000;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
+        #contact h2 { /* Specific adjustment for contact h2 if needed */
+            font-size: 1.5rem; /* Kept original size for contact h2 */
         }
         #contact form {
             display: flex;
@@ -288,7 +282,12 @@
             const newLang = currentLang === 'en' ? 'no' : 'en';
             localStorage.setItem('lang', newLang);
             document.querySelectorAll('[data-en], [data-no]').forEach(el => {
-                el.textContent = el.getAttribute(`data-${newLang}`);
+                // Handle placeholders for input/textarea
+                if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                    el.placeholder = el.getAttribute(`data-${newLang}`);
+                } else {
+                    el.textContent = el.getAttribute(`data-${newLang}`);
+                }
             });
             updateFlag(newLang);
         }
@@ -310,7 +309,12 @@
         document.addEventListener('DOMContentLoaded', () => {
             const lang = localStorage.getItem('lang') || 'en';
             document.querySelectorAll('[data-en], [data-no]').forEach(el => {
-                el.textContent = el.getAttribute(`data-${lang}`);
+                // Handle placeholders for input/textarea on initial load
+                if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                    el.placeholder = el.getAttribute(`data-${lang}`);
+                } else {
+                    el.textContent = el.getAttribute(`data-${lang}`);
+                }
             });
             updateFlag(lang);
         });
@@ -325,7 +329,7 @@
             <a href="https://www.solheim.online/Curriculum%20Vitae.html" class="animated-button" data-en="Curriculum Vitae" data-no="Curriculum Vitae">Curriculum Vitae</a>
         </div>
 
-        <div class="social-icons" style="margin-top: 2.5rem; display: flex; justify-content: center; gap: 1.2rem; animation: fadeIn 3s ease-out;">
+        <div class="social-icons">
             <a href="https://www.facebook.com/solheim.online/" title="Facebook"><i class="fab fa-facebook"></i></a>
             <a href="https://www.instagram.com/solheim.online" title="Instagram"><i class="fab fa-instagram"></i></a>
             <a href="https://www.linkedin.com/in/kianosh-solheim" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
@@ -334,14 +338,14 @@
             <a href="https://x.com/Kianosh_Solheim" title="Twitter"><i class="fab fa-twitter"></i></a>
         </div>
 
-        <div id="about">
+        <section id="about">
             <h2 data-en="About Me" data-no="Om Meg">About Me</h2>
             <p>
                 I’m a Comparative Politics student passionate about democracy, participation, and communication. With a background in writing and activism, I work to make political ideas accessible and engaging. My interests include populism, social movements, and the future of democratic institutions. I also enjoy contributing to public debate and visual storytelling through digital media.
             </p>
-        </div>
+        </section>
 
-        <div id="contact">
+        <section id="contact">
             <h2 data-en="Get in Touch" data-no="Ta Kontakt">Get in Touch</h2>
             <form action="https://formspree.io/f/meogbldy" method="POST">
                 <input type="text" name="name" placeholder="Your Name" data-en="Your Name" data-no="Ditt navn" required />
@@ -350,8 +354,9 @@
                 <button type="submit" data-en="Send Message" data-no="Send melding">Send Message</button>
             </form>
             <div class="form-response"></div>
-        </div>
-    </div> <div id="footer-placeholder"></div>
+        </section>
+    </div>
+    <div id="footer-placeholder"></div>
 
     <script>
         // The HTML content for the footer, embedded directly in the script
