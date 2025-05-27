@@ -33,7 +33,11 @@
         body {
             font-family: var(--font-family);
             background: var(--background-color);
-            padding: 4rem 2rem; /* Default padding for larger screens */
+            /* Generous padding-top to clear fixed header elements */
+            padding-top: 7rem; /* Increased top padding */
+            padding-left: 2rem;
+            padding-right: 2rem;
+            padding-bottom: 4rem; /* Default bottom padding */
             width: 100%;
             min-height: 100vh;
             display: flex;
@@ -50,12 +54,12 @@
         /* Home Button Wrapper - Fixed to the top left corner */
         .home-button-wrapper {
             position: fixed; /* Position relative to the viewport */
-            top: 1rem;
+            top: 0.5rem; /* Consistent top position */
             left: 1rem;
             display: flex;
             flex-direction: column;
             align-items: center;
-            z-index: 9999;
+            z-index: 10000; /* Ensure it's always on top */
         }
         .home-button {
             background: transparent;
@@ -87,12 +91,11 @@
         }
         .home-label {
             position: absolute; /* Positioned relative to its parent .home-button-wrapper */
-            top: 2.5rem; /* Position below the icon */
+            top: calc(100% + 0.3rem); /* Position below the icon, 100% of parent height + margin */
             left: 50%; /* Center horizontally */
             transform: translateX(-50%); /* Adjust for own width */
             white-space: nowrap;
             z-index: 10000;
-            margin-top: 0.3rem; /* Space below the icon */
             background: var(--label-bg);
             color: var(--label-color);
             padding: 0.2rem 0.5rem;
@@ -110,12 +113,12 @@
         /* Language Toggle Wrapper - Fixed to the top right corner */
         .lang-toggle-wrapper {
             position: fixed; /* Position relative to the viewport */
-            top: 1rem;
+            top: 0.5rem; /* Consistent top position */
             right: 1rem;
             display: flex;
             flex-direction: column; /* Keep column for vertical alignment of button and label */
             align-items: center;
-            z-index: 9999;
+            z-index: 10000; /* Ensure it's always on top */
         }
 
         .lang-toggle {
@@ -148,12 +151,11 @@
         /* Language Label - Positioned relative to its parent .lang-toggle-wrapper */
         .lang-label {
             position: absolute; /* Positioned relative to its parent .lang-toggle-wrapper */
-            top: 2.5rem; /* Position below the icon */
+            top: calc(100% + 0.3rem); /* Position below the icon, 100% of parent height + margin */
             left: 50%; /* Center horizontally */
             transform: translateX(-50%); /* Adjust for own width */
             white-space: nowrap;
             z-index: 10000;
-            margin-top: 0.3rem; /* Space below the icon */
             background: var(--label-bg);
             color: var(--label-color);
             padding: 0.2rem 0.5rem;
@@ -161,7 +163,7 @@
             font-size: 0.7rem;
             opacity: 0;
             transition: opacity 0.3s ease, transform 0.3s ease;
-            pointer-events: none; /* Allows clicks to pass through to elements behind it */
+            pointer-events: none; /* Allows clicks to pass through to the button */
         }
 
         .lang-toggle-wrapper:hover .lang-label {
@@ -185,6 +187,7 @@
             font-size: clamp(2rem, 5vw, 3rem); /* Responsive font size */
             color: var(--text-color);
             margin-bottom: 0.25rem;
+            margin-top: 0; /* Let body padding handle top spacing */
             animation: fadeIn 1.5s ease-out;
         }
 
@@ -268,11 +271,12 @@
         /* Styles for Recommendations Page */
         .recommendations-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Adjusted minmax for better adaptability */
+            /* Allow for smaller min-width for better packing on smaller screens */
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
             gap: 1.5rem;
             max-width: 1200px;
             margin-top: 3rem;
-            padding: 0 1rem;
+            padding: 0 1rem; /* Padding inside the grid container */
             width: 100%; /* Ensure grid takes full width up to max-width */
         }
 
@@ -382,10 +386,12 @@
         /* Responsive adjustments */
         @media (max-width: 768px) {
             body {
-                padding: 2rem 1rem; /* Reduce padding for tablets and smaller */
+                padding-top: 6rem; /* Slightly reduced top padding for tablets */
+                padding-left: 1rem;
+                padding-right: 1rem;
             }
             .home-button-wrapper, .lang-toggle-wrapper {
-                top: 0.5rem; /* Move buttons slightly closer to top edge */
+                top: 0.5rem; /* Consistent top position */
             }
             .home-button-wrapper {
                 left: 0.5rem;
@@ -393,20 +399,29 @@
             .lang-toggle-wrapper {
                 right: 0.5rem;
             }
+            h1 {
+                margin-top: 1rem; /* Adjust margin for heading on smaller screens */
+            }
+            .recommendations-grid {
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* Adjusted min-width for tablets */
+                gap: 1rem; /* Reduced gap for tablets */
+            }
         }
 
         @media (max-width: 480px) {
             body {
-                padding: 1rem 0.5rem; /* Further reduce padding for mobile phones */
+                padding-top: 5rem; /* Further reduced top padding for mobile phones */
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+                padding-bottom: 1rem; /* Reduce bottom padding for mobile */
             }
             .recommendations-grid {
                 grid-template-columns: 1fr; /* Stack cards vertically on very small screens */
-                gap: 1rem; /* Reduce gap for tighter packing on very small screens */
+                gap: 0.75rem; /* Reduce gap for tighter packing on very small screens */
             }
-            /* Tooltip positioning for very small screens */
+            /* Tooltip positioning remains consistent */
             .home-label, .lang-label {
-                top: 2rem; /* Adjust tooltip position for smaller icons */
-                /* left: 50% and transform: translateX(-50%) already handle horizontal centering */
+                top: calc(100% + 0.3rem);
             }
         }
     </style>
