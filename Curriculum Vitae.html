@@ -206,6 +206,51 @@
   margin-bottom: 0.5rem;
   object-fit: contain;
   border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for elegance */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+  }
+
+  .skill-item img:hover {
+      transform: scale(1.1); /* Slight zoom on hover */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+  }
+
+  /* Style for Font Awesome icons within skill items */
+  .skill-item i {
+      font-size: 35px; /* Match the size of the images */
+      margin-bottom: 0.5rem;
+      color: #2980b9; /* Ensure consistent color with the text */
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Subtle shadow for elegance */
+      transition: transform 0.3s ease, text-shadow 0.3s ease, color 0.3s ease; /* Smooth transition */
+  }
+
+  .skill-item i:hover {
+      transform: scale(1.1); /* Slight zoom on hover */
+      color: #3498db; /* Slightly brighter color on hover */
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+  }
+
+  /* Style for flag icons */
+  .skill-item .flag-icon {
+      width: 35px;
+      height: 23px; /* Adjust height for aspect ratio of flags */
+      margin: 0 2px; /* Small margin between flags */
+      object-fit: cover; /* Changed to cover to ensure flags fill the space */
+      border: 1px solid #ccc; /* Optional: subtle border for flags */
+      border-radius: 6px; /* Increased border-radius for more rounded corners */
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15); /* Slightly more pronounced shadow */
+      transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+  }
+  .skill-item .flag-icon:hover {
+      transform: scale(1.15); /* Slightly more zoom on hover */
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+  }
+
+  .flag-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 0.5rem; /* Space between flags and text */
   }
 
   /* Animations */
@@ -269,6 +314,67 @@
   .lang-toggle-wrapper:hover .lang-label {
   opacity: 1;
   transform: translateY(0);
+  }
+
+  /* PDF Download Buttons */
+  .pdf-download-section {
+    text-align: center;
+    margin-top: 1.5rem; /* Reduced margin-top */
+    margin-bottom: 2rem; /* Added margin-bottom to separate from next section */
+    padding: 0.8rem 1rem; /* Reduced padding */
+    border-top: 1px solid #e0e0e0; /* Thinner border */
+    border-bottom: 1px solid #e0e0e0; /* Added bottom border */
+    background-color: #f8f8f8; /* Slightly different background */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05); /* Softer shadow */
+    opacity: 0; /* Initial state for scroll animation */
+    transform: translateY(20px); /* Initial state for scroll animation */
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .pdf-download-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .pdf-download-section h3 {
+    color: #34495e;
+    font-size: 1.1rem; /* Smaller font size for heading */
+    margin-bottom: 0.8rem; /* Reduced margin */
+  }
+
+  .pdf-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 0.8rem; /* Reduced gap between buttons */
+    flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+  }
+
+  .pdf-button {
+    background-color: #3498db;
+    color: white;
+    padding: 0.6rem 1.2rem; /* Reduced padding */
+    border: none;
+    border-radius: 6px; /* Slightly smaller border-radius */
+    font-size: 0.9rem; /* Smaller font size for buttons */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem; /* Reduced gap */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* Softer shadow */
+  }
+
+  .pdf-button:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px); /* Smaller lift on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Softer hover shadow */
+  }
+
+  .pdf-button i {
+    font-size: 1rem; /* Smaller icon size */
+    margin-bottom: 0; /* Override skill-item i margin */
+    text-shadow: none; /* Override skill-item i text-shadow */
   }
 
   /* Footer styling (reused from main page) */
@@ -359,6 +465,18 @@
   <p><a href="https://www.solheim.online" target="_blank">www.solheim.online</a> | Updated: 24 May 2025</p>
   </div>
 
+  <section class="pdf-download-section">
+    <h3 data-en="Download CV as PDF" data-no="Last ned CV som PDF">Download CV as PDF</h3>
+    <div class="pdf-buttons">
+      <button class="pdf-button" onclick="generatePdf('en')">
+        <i class="fa-solid fa-file-pdf"></i> <span data-en="Download English PDF" data-no="Last ned engelsk PDF">Download English PDF</span>
+      </button>
+      <button class="pdf-button" onclick="generatePdf('no')">
+        <i class="fa-solid fa-file-pdf"></i> <span data-en="Download Norwegian PDF" data-no="Last ned norsk PDF">Last ned norsk PDF</span>
+      </button>
+    </div>
+  </section>
+
   <section id="personal-details">
   <h2 data-en="Personal Details" data-no="Personlige Opplysninger">Personal Details</h2>
   <ul>
@@ -391,7 +509,7 @@
   <div class="item-content">
   <h3><span data-en="Bachelor's degree in Comparative Politics" data-no="Bachelorgrad i sammenlignende politikk">Bachelor's degree in Comparative Politics</span>, University of Bergen</h3>
   <p class="date">2022-2025</p>
-  <p class="thesis-title" data-en="Thesis Title: "The Elephant in the Room: How the GOP Paved the Way for Trump's Populism"" data-no="Tittel på bacheloroppgave: "The Elephant in the Room: How the GOP Paved the Way for Trump's Populism"">Thesis Title: "The Elephant in the Room: How the GOP Paved the Way for Trump's Populism"</p>
+  <p class="thesis-title" data-en="Thesis Title: &quot;The Elephant in the Room: How the GOP Paved the Way for Trump’s Populism&quot;" data-no="Tittel på bacheloroppgave: &quot;The Elephant in the Room: How the GOP Paved the Way for Trump’s Populism&quot;">Thesis Title: "The Elephant in the Room: How the GOP Paved the Way for Trump’s Populism"</p>
   <p><strong data-en="Supervisor:" data-no="Veileder:">Supervisor:</strong> Jonas Linde (UiB)</p>
   <p class="courses"><strong data-en="Courses:" data-no="Emner:">Courses:</strong> SAMPOL100 Introduction to Comparative Politics, SAMPOL103 Political ideologies, SAMPOL105 State and Nation Building, SAMPOL106 Political Institutions in Established Democracies, SAMPOL107 Political Mobilization, SAMPOL115 Democracy and Democratization, MET102 Methods in the Social Sciences, SAMPOL203 Comparative Arctic Indigenous Governance, SAMPOL226 Populism and its Consequences for Liberal Democracy, SAMPOL233 Forsvar og totalforsvar i etablerte demokrati, SAMPOL230 Party Politics in Europe and Beyond, SAMPOL235 The Politics and Global Governance of International Protection, SAMPOL238 The Politics of Contestation, SAMPOL260 Bachelor Essay in Comparative Politics</p>
   </div>
@@ -417,7 +535,7 @@
   <h2 data-en="Roles" data-no="Roller">Roles</h2>
   <ul>
   <li>
-  <img src="https://placehold.co/60x60/cccccc/ffffff?text=SP" alt="Student Parliament Logo" class="institution-logo">
+  <img src="https://media.snl.no/media/11669/standard_uib.png" alt="University of Bergen Logo" class="institution-logo">
   <div class="item-content">
   <h3><span data-en="Representative on the University's Learning Environment Committee" data-no="Studentrepresentant i universitetets læringsmiljøutvalg">Representative on the University's Learning Environment Committee</span></h3>
   <p class="date">2023-2025</p>
@@ -433,7 +551,7 @@
   </div>
   </li>
   <li>
-  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm4mvh0jdZ2t9qtEHCCjhqnnxs-XecXbQr8g&s" alt="Social Democratic List Logo" class="institution-logo">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn9GcRm4mvh0jdZ2t9qtEHCCjhqnnxs-XecXbQr8g&s" alt="Social Democratic List Logo" class="institution-logo">
   <div class="item-content">
   <h3><span data-en="Head of the Social Democratic List" data-no="Listeleder for Sosialdemokratiske liste">Head of the Social Democratic List</span></h3>
   <p class="date">2023-2024</p>
@@ -469,70 +587,83 @@
   <h2 data-en="Skills" data-no="Ferdigheter">Skills</h2>
   <div class="skills-grid">
   <div class="skill-item">
+  <i class="fas fa-pencil-alt"></i>
   <span data-en="Writing and editing" data-no="Skriving og redigering">Writing and editing</span>
   </div>
   <div class="skill-item">
+  <i class="fas fa-magnifying-glass"></i>
   <span data-en="Research and analysis" data-no="Forskning og analyse">Research and analysis</span>
   </div>
   <div class="skill-item">
+  <i class="fas fa-comments"></i>
   <span data-en="Communication" data-no="Kommunikasjon">Communication</span>
   </div>
   <div class="skill-item">
+  <i class="fas fa-microphone-alt"></i>
   <span data-en="Speech writing" data-no="Taleskriving">Speech writing</span>
   </div>
   <div class="skill-item">
+  <i class="fas fa-tasks"></i>
   <span data-en="Project management" data-no="Prosjektledelse">Project management</span>
   </div>
   <div class="skill-item">
-  <span data-en="Public speaking and presentation" data-no="Offentlig taler og presentasjon">Public speaking and presentation</span>
-  </div>
-  <div class="skill-item">
+  <i class="fas fa-video"></i>
   <span data-en="Content creation and digital media" data-no="Innholdsproduksjon og digitale medier">Content creation and digital media</span>
   </div>
   <div class="skill-item">
+  <div class="flag-container">
+  <img src="https://flagcdn.com/gb.svg" alt="Union Jack Flag" class="flag-icon">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Norway.svg" alt="Norwegian Flag" class="flag-icon">
+  </div>
   <span data-en="Languages (fluent in Norwegian and English)" data-no="Språk (flytende i norsk og engelsk)">Languages (fluent in Norwegian and English)</span>
   </div>
 
   <div class="skill-item">
-  <img src="https://placehold.co/40x40/2a569a/ffffff?text=Word" alt="Microsoft Word Logo" class="app-logo">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Microsoft_Office_Word_%282019%E2%80%93present%29.svg/768px-Microsoft_Office_Word_%282019%E2%80%93present%29.svg.png" alt="Microsoft Word Logo" class="app-logo">
   <span data-en="Microsoft Word" data-no="Microsoft Word">Microsoft Word</span>
   </div>
   <div class="skill-item">
-  <img src="https://placehold.co/40x40/d24726/ffffff?text=PPT" alt="Microsoft PowerPoint Logo" class="app-logo">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Microsoft_Office_PowerPoint_%282019%E2%80%93present%29.svg/768px-Microsoft_Office_PowerPoint_%282019%E2%80%93present%29.svg.png" alt="Microsoft PowerPoint Logo" class="app-logo">
   <span data-en="Microsoft PowerPoint" data-no="Microsoft PowerPoint">Microsoft PowerPoint</span>
   </div>
   <div class="skill-item">
-  <img src="https://placehold.co/40x40/217346/ffffff?text=Excel" alt="Microsoft Excel Logo" class="app-logo">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Microsoft_Office_Excel_%282019%E2%80%93present%29.svg/768px-Microsoft_Office_Excel_%282019%E2%80%93present%29.svg.png" alt="Microsoft Excel Logo" class="app-logo">
   <span data-en="Microsoft Excel" data-no="Microsoft Excel">Microsoft Excel</span>
   </div>
   <div class="skill-item">
-  <img src="https://placehold.co/40x40/0078d4/ffffff?text=Win" alt="Windows Logo" class="app-logo">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Windows_logo_-_2021.svg/640px-Windows_logo_-_2021.svg.png" alt="Windows Logo" class="app-logo">
   <span data-en="Windows" data-no="Windows">Windows</span>
   </div>
   <div class="skill-item">
-  <img src="https://placehold.co/40x40/000000/ffffff?text=MD" alt="Markdown Logo" class="app-logo">
+  <i class="fa-brands fa-markdown"></i>
   <span data-en="Markdown" data-no="Markdown">Markdown</span>
   </div>
   <div class="skill-item">
-  <img src="https://placehold.co/40x40/4e2a84/ffffff?text=Obs" alt="Obsidian.md Logo" class="app-logo">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/2023_Obsidian_logo.svg/640px-2023_Obsidian_logo.svg.png" alt="Obsidian.md Logo" class="app-logo">
   <span data-en="Obsidian.md" data-no="Obsidian.md">Obsidian.md</span>
   </div>
   </div>
   </section>
+
   </div>
 
   <div id="footer-placeholder"></div>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <script>
   // Language toggle functionality
   function toggleLanguage() {
   const currentLang = localStorage.getItem('lang') || 'en';
   const newLang = currentLang === 'en' ? 'no' : 'en';
   localStorage.setItem('lang', newLang);
+  applyLanguage(newLang);
+  }
+
+  function applyLanguage(lang) {
   document.querySelectorAll('[data-en], [data-no]').forEach(el => {
-  el.textContent = el.getAttribute(`data-${newLang}`);
+  el.textContent = el.getAttribute(`data-${lang}`);
   });
-  updateFlag(newLang);
+  updateFlag(lang);
   }
 
   function updateFlag(lang) {
@@ -551,10 +682,7 @@
 
   document.addEventListener('DOMContentLoaded', () => {
   const lang = localStorage.getItem('lang') || 'en';
-  document.querySelectorAll('[data-en], [data-no]').forEach(el => {
-  el.textContent = el.getAttribute(`data-${lang}`);
-  });
-  updateFlag(lang);
+  applyLanguage(lang);
 
   // Intersection Observer for scroll animations
   const observerOptions = {
@@ -583,7 +711,7 @@
   }, observerOptions);
 
   // Observe h2 headings and sections
-  document.querySelectorAll('h2, section ul li, section .skills-grid .skill-item').forEach(element => {
+  document.querySelectorAll('h2, section ul li, section .skills-grid .skill-item, .pdf-download-section').forEach(element => {
   observer.observe(element);
   });
 
@@ -592,6 +720,38 @@
   observer.observe(logo);
   });
   });
+
+  // Function to generate PDF
+  async function generatePdf(targetLang) {
+    const cvContainer = document.querySelector('.cv-container');
+    const originalLang = localStorage.getItem('lang') || 'en';
+
+    // Temporarily apply the target language for PDF generation
+    applyLanguage(targetLang);
+
+    // Options for html2pdf
+    const options = {
+      margin: 10,
+      filename: `Kianosh_Solheim_CV_${targetLang.toUpperCase()}.pdf`,
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2, logging: true, dpi: 192, letterRendering: true },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    };
+
+    // Generate PDF
+    try {
+      await html2pdf().from(cvContainer).set(options).save();
+      console.log(`PDF for ${targetLang.toUpperCase()} CV generated successfully.`);
+    } catch (error) {
+      console.error('Error generating PDF:', error);
+      // You could display a user-friendly message here instead of alert()
+      // For example, update a div with an error message.
+    } finally {
+      // Revert to the original display language
+      applyLanguage(originalLang);
+    }
+  }
+
 
   // The HTML content for the footer, embedded directly in the script
   const footerHtmlContent = `
