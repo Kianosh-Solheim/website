@@ -1,20 +1,66 @@
-<!-- Font Awesome 6.7.2 - needed for the social icons -->
+<!-- Font Awesome (ensure only once in your layout) -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js" crossorigin="anonymous"></script>
+
+<style>
+/* Footer specific styles */
+footer.site-footer {
+  width: 100%;
+  text-align: center;
+  padding: 2rem 1rem;
+  font-size: 0.9rem;
+  color: #666;
+  border-top: 1px solid #ccc;
+  background: #f9f9f9;
+  box-sizing: border-box;
+}
+.site-footer .social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.site-footer .social-icons a {
+  position: relative;
+  text-decoration: none;
+  color: #000;
+  font-size: 1.5rem;
+  transition: transform 0.2s ease, color 0.3s ease, text-shadow 0.3s ease;
+}
+.site-footer .social-icons a:hover {
+  transform: scale(1.25);
+  text-shadow: 0 0 8px rgba(0,0,0,0.2);
+}
+.site-footer .social-icons a[title="Facebook"]:hover   { color: #1877F2; }
+.site-footer .social-icons a[title="Instagram"]:hover { color: #E1306C; }
+.site-footer .social-icons a[title="LinkedIn"]:hover  { color: #0077B5; }
+.site-footer .social-icons a[title="Bluesky"]:hover   { color: #0A7AFF; }
+.site-footer .social-icons a[title="Threads"]:hover   { color: #000; text-shadow:0 0 6px #000; }
+.site-footer .social-icons a[title="Twitter"]:hover   { color: #1DA1F2; }
+
+.site-footer .footer-logo {
+  margin: 0.5rem auto;
+  max-width: 80px;
+  display: block;
+}
+.site-footer .copyright-text {
+  margin-top: 0.5rem;
+}
+</style>
 
 <footer class="site-footer">
   <div class="social-icons">
     <a href="https://www.facebook.com/solheim.online/" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
-    <a href="https://www.instagram.com/solheim.online" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-    <a href="https://www.linkedin.com/in/kianosh-solheim" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-    <a href="https://bsky.app/profile/solheim.online" title="Bluesky"><i class="fa-brands fa-bluesky"></i></a>
-    <a href="https://www.threads.net/@solheim.online" title="Threads"><i class="fa-brands fa-threads"></i></a>
-    <a href="https://x.com/Kianosh_Solheim" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+    <a href="https://www.instagram.com/solheim.online"     title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+    <a href="https://www.linkedin.com/in/kianosh-solheim"  title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+    <a href="https://bsky.app/profile/solheim.online"      title="Bluesky"><i class="fa-brands fa-bluesky"></i></a>
+    <a href="https://www.threads.net/@solheim.online"      title="Threads"><i class="fa-brands fa-threads"></i></a>
+    <a href="https://x.com/Kianosh_Solheim"                title="Twitter"><i class="fa-brands fa-twitter"></i></a>
   </div>
 
   <img src="https://www.solheim.online/Kianosh%20F.%20Solheim%20Heraldry.svg"
        alt="Personal Logo"
        class="footer-logo"
-       onerror="this.onerror=null; this.src='https://placehold.co/80x80/eeeeee/333333?text=Logo'; this.alt='Placeholder Logo';" />
+       onerror="this.onerror=null; this.src='https://placehold.co/80x80/eeeeee/333333?text=Logo';" />
 
   <p class="copyright-text"
      data-en="© 2025 Kianosh F. Solheim. All rights reserved."
@@ -22,4 +68,3 @@
     © 2025 Kianosh F. Solheim. All rights reserved.
   </p>
 </footer>
-
