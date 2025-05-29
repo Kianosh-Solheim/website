@@ -302,9 +302,9 @@ lang: en
             document.querySelectorAll('[data-en], [data-no]').forEach(el => {
                 // Handle placeholders for input and textarea elements
                 if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-                    el.placeholder = el.getAttribute(data-${newLang});
+                    el.placeholder = el.getAttribute(`data-${newLang}`);
                 } else { // Handle textContent for other elements
-                    el.textContent = el.getAttribute(data-${newLang});
+                    el.textContent = el.getAttribute(`data-${newLang}`);
                 }
             });
             updateFlag(newLang); // Update the flag icon and tooltip
@@ -322,7 +322,7 @@ lang: en
                 : 'https://flagcdn.com/gb.svg'; // UK flag (for English)
             const button = document.querySelector('button[onclick="toggleLanguage()"]');
             if (button) {
-                button.style.backgroundImage = url(${flagUrl});
+                button.style.backgroundImage = `url(${flagUrl})`;
             }
         }
 
@@ -332,9 +332,9 @@ lang: en
             // Set initial language for all elements
             document.querySelectorAll('[data-en], [data-no]').forEach(el => {
                 if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-                    el.placeholder = el.getAttribute(data-${lang});
+                    el.placeholder = el.getAttribute(`data-${lang}`);
                 } else {
-                    el.textContent = el.getAttribute(data-${lang});
+                    el.textContent = el.getAttribute(`data-${lang}`);
                 }
             });
             updateFlag(lang); // Set initial flag icon and tooltip
@@ -426,7 +426,7 @@ lang: en
 
 
         // The HTML content for the footer, embedded directly in the script
-        const footerHtmlContent = 
+        const footerHtmlContent = `
             <footer>
                 <div class="social-icons">
                     <a href="https://www.facebook.com/solheim.online/" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
@@ -440,7 +440,7 @@ lang: en
                      onerror="this.onerror=null; this.src='https://placehold.co/80x80/eeeeee/333333?text=Logo'; this.alt='Placeholder Logo';" />
                 <p class="copyright-text" data-en="© 2025 Kianosh F. Solheim. All rights reserved." data-no="© 2025 Kianosh F. Solheim. Alle rettigheter forbeholdt.">© 2025 Kianosh F. Solheim. All rights reserved.</p>
             </footer>
-        ;
+        `;
 
         // Function to load the footer
         function loadFooter() {
@@ -451,9 +451,9 @@ lang: en
                 const lang = localStorage.getItem('lang') || 'en';
                 footerPlaceholder.querySelectorAll('[data-en], [data-no]').forEach(el => {
                      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') { // Should not be needed in footer but good practice
-                         el.placeholder = el.getAttribute(data-${lang});
+                         el.placeholder = el.getAttribute(`data-${lang}`);
                     } else {
-                         el.textContent = el.getAttribute(data-${lang});
+                         el.textContent = el.getAttribute(`data-${lang}`);
                     }
                 });
             }
@@ -465,3 +465,4 @@ lang: en
     </script>
 </body>
 </html>
+
