@@ -1,0 +1,5 @@
+# _config.yml
+title: “Kianosh-Solheim”
+description: “My personal site”
+baseurl: ""       
+theme: minima   
