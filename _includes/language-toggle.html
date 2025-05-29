@@ -1,0 +1,55 @@
+<!-- Language Toggle Include -->
+<!-- Include this partial at the top of your layout or pages -->
+<div class="lang-toggle-wrapper">
+  <button onclick="toggleLanguage()" title="Change Language" class="lang-toggle"></button>
+  <div class="lang-label" id="langLabel">Change Language</div>
+</div>
+
+<script>
+  // Toggle between English ('en') and Norwegian ('no')
+  function toggleLanguage() {
+    const currentLang = localStorage.getItem('lang') || 'en';
+    const newLang = currentLang === 'en' ? 'no' : 'en';
+    localStorage.setItem('lang', newLang);
+
+    document.querySelectorAll('[data-en], [data-no]').forEach(el => {
+      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+        el.placeholder = el.getAttribute(`data-${newLang}`);
+      } else {
+        el.textContent = el.getAttribute(`data-${newLang}`);
+      }
+    });
+    updateFlag(newLang);
+  }
+
+  // Update the flag icon and tooltip
+  function updateFlag(lang) {
+    const label = document.getElementById('langLabel');
+    if (label) {
+      label.textContent =
+        lang === 'en'
+          ? 'Change Language to Norwegian'
+          : 'Change Language to English';
+    }
+    const button = document.querySelector('button[onclick="toggleLanguage()"]');
+    if (button) {
+      const flagUrl = lang === 'en'
+        ? 'https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Norway.svg'
+        : 'https://flagcdn.com/gb.svg';
+      button.style.backgroundImage = `url(${flagUrl})`;
+    }
+  }
+
+  // Initialize language on page load
+  document.addEventListener('DOMContentLoaded', () => {
+    const lang = localStorage.getItem('lang') || 'en';
+    document.querySelectorAll('[data-en], [data-no]').forEach(el => {
+      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+        el.placeholder = el.getAttribute(`data-${lang}`);
+      } else {
+        el.textContent = el.getAttribute(`data-${lang}`);
+      }
+    });
+    updateFlag(lang);
+  });
+</script>
