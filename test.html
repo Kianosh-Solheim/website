@@ -1,86 +1,426 @@
+---
+layout: default
+title: "Home"
+lang: en
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kianosh F. Solheim's Website</title>
-  <!-- Font Awesome 6.7.2 - load once in layout -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kianosh F. Solheim's Website</title>
+    <!--
+        Font Awesome 6.7.2 loaded via CDN.
+        This replaces the previous Font Awesome Kit.
+    -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js" crossorigin="anonymous"></script>
+    <style>
+        /* General body and HTML styling */
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: Georgia, serif; /* Classic serif font */
+            background: #ffffff; /* Clean white background */
+            box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
+        }
 
-  <style>
-    /* Global & Main Content styles (leave as-is) */
-    html, body {
-      height: 100%; margin: 0; font-family: Georgia, serif; background: #fff; box-sizing: border-box;
-    }
-    body {
-      display: flex; flex-direction: column; min-height: 100vh; text-align: center;
-    }
-    .main-content-wrapper {
-      padding: 4rem 2rem; width:100%; max-width:900px; margin:0 auto; flex-grow:1;
-    }
-    .button-group { display:flex; flex-wrap:wrap; justify-content:center; gap:1rem; margin:2rem 0; }
-    .animated-button { padding:0.6rem 1.25rem; background:#2e2e2e; color:#fff; text-decoration:none; border-radius:8px; transition:background 0.3s,transform 0.3s; }
-    .animated-button:hover { background:#444; transform:scale(1.05); }
-    .social-icons { display:flex; justify-content:center; gap:1rem; margin:1rem 0; }
-    .social-icons a { color:#000; font-size:1.5rem; transition:transform 0.2s, color 0.3s; }
-    .social-icons a:hover { transform:scale(1.25); }
-    section { max-width:700px; margin:3rem auto; text-align:left; }
-    section h2 { font-size:1.75rem; margin-bottom:1rem; }
-    section p { font-size:1rem; line-height:1.6; }
-    #contact form { display:flex; flex-direction:column; gap:1rem; align-items:center; }
-    #contact input, #contact textarea { width:100%; max-width:300px; padding:0.75rem; border:1px solid #ccc; border-radius:5px; font-family:Georgia, serif; }
-    #contact button[type="submit"] { background:#2e2e2e; color:#fff; border:none; padding:0.75rem; border-radius:5px; cursor:pointer; transition:background 0.3s; }
-    #contact button[type="submit"]:hover { background:#444; }
-    .form-response { margin-top:1rem; font-size:1rem; display:none; }
-  </style>
+        body {
+            display: flex; /* Enables flexbox layout */
+            flex-direction: column; /* Stacks child elements vertically */
+            min-height: 100vh; /* Ensures body takes at least the full viewport height */
+            padding: 0; /* No padding on the body itself */
+            text-align: center; /* Centers text content for overall page elements */
+        }
+
+        /* Main content wrapper styles */
+        .main-content-wrapper {
+            padding: 4rem 2rem; /* Generous padding for content */
+            width: 100%; /* Takes full available width */
+            max-width: 900px; /* Limits maximum width for better readability on large screens */
+            margin: 0 auto; /* Centers the wrapper horizontally */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* Aligns content to the start (top) */
+            align-items: center; /* Centers content horizontally within the wrapper */
+            box-sizing: border-box;
+            position: relative; /* For potential positioning of child elements */
+            flex-grow: 1; /* Allows the wrapper to grow and push the footer down */
+        }
+
+        /* Footer specific styles */
+        footer {
+            width: 100%; /* Full width */
+            text-align: center; /* Center-aligns text */
+            margin-top: auto; /* Pushes footer to the bottom when content is short */
+            padding: 2rem 1rem; /* Padding around footer content */
+            font-size: 0.9rem; /* Slightly smaller font size */
+            color: #666; /* Muted text color */
+            border-top: 1px solid #ccc; /* Subtle top border */
+            background: #f9f9f9; /* Light background for the footer */
+            box-sizing: border-box;
+        }
+
+        /* Social icons styling (for both main content and footer) */
+        .social-icons {
+            position: relative; /* For tooltip positioning */
+            margin-bottom: 1rem; /* Space below icons */
+            display: flex; /* Enables flexbox for icon alignment */
+            justify-content: center; /* Centers icons horizontally */
+            gap: 1rem; /* Space between icons */
+            margin-top: 2.5rem; /* Space above icons */
+            animation: fadeIn 3s ease-out; /* Fade-in animation */
+        }
+
+        .social-icons a {
+            position: relative; /* For tooltip positioning */
+            text-decoration: none; /* Removes underline from links */
+            display: inline-flex; /* Allows flex properties on the anchor */
+            flex-direction: column; /* Stacks icon and tooltip text vertically */
+            align-items: center; /* Centers icon and tooltip text */
+            font-size: 1.5rem; /* Icon size */
+            color: #000000; /* Default icon color (black) */
+            transition: transform 0.2s ease, color 0.3s ease, text-shadow 0.3s ease; /* Smooth transitions for hover effects */
+        }
+
+        .social-icons a:hover {
+            transform: scale(1.25); /* Enlarges icon on hover */
+            text-shadow: 0 0 8px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow on hover */
+        }
+
+        /* Specific hover colors for social media icons */
+        .social-icons a[title="Facebook"]:hover { color: #1877F2; }
+        .social-icons a[title="Instagram"]:hover { color: #E1306C; }
+        .social-icons a[title="LinkedIn"]:hover { color: #0077B5; }
+        .social-icons a[title="Bluesky"]:hover { color: #0A7AFF; }
+        .social-icons a[title="Threads"]:hover { color: #000000; text-shadow: 0 0 6px #000000; }
+        .social-icons a[title="Twitter"]:hover { color: #1DA1F2; } /* Or your preferred color for X */
+
+        /* Tooltip-like effect for social icons on hover */
+        .social-icons a::after {
+            content: attr(title); /* Uses the 'title' attribute for the tooltip text */
+            font-size: 0.75rem; /* Smaller font for tooltip */
+            color: #666; /* Muted color for tooltip text */
+            margin-top: 0.3rem; /* Space between icon and tooltip */
+            opacity: 0; /* Hidden by default */
+            transform: translateY(5px); /* Slightly offset downwards */
+            transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth transition for appearance */
+            pointer-events: none; /* Tooltip doesn't interfere with mouse events */
+        }
+
+        .social-icons a:hover::after {
+            opacity: 1; /* Shows tooltip on hover */
+            transform: translateY(0); /* Moves tooltip to its intended position */
+        }
+
+        /* Styling for the personal logo image in the footer */
+        .footer-logo {
+            margin: 0.5rem auto; /* Centers logo and adds some margin */
+            max-width: 80px; /* Limits logo size */
+            border-radius: 0px; /* No rounded corners for this image */
+            display: block; /* Ensures it's on its own line and margin auto works */
+        }
+
+        /* Copyright text styling */
+        .copyright-text {
+            margin-top: 0.5rem; /* Space above copyright text */
+        }
+
+        /* Language toggle button styles */
+        .lang-toggle {
+            position: fixed; /* Fixed position on the viewport */
+            top: 1rem; /* Distance from the top */
+            right: 1rem; /* Distance from the right */
+            background: transparent; /* Transparent background */
+            color: transparent; /* Transparent text (image is used) */
+            border: none; /* No border */
+            border-radius: 50%; /* Circular button */
+            width: 2rem; /* Button width */
+            height: 2rem; /* Button height */
+            cursor: pointer; /* Pointer cursor on hover */
+            background-repeat: no-repeat; /* Prevents flag image from repeating */
+            background-position: center; /* Centers flag image */
+            background-size: cover; /* Scales flag image to cover button */
+            opacity: 0.5; /* Slightly transparent by default */
+            transition: transform 0.4s ease, box-shadow 0.4s ease, opacity 0.4s ease; /* Smooth transitions for hover effects */
+            z-index: 9999; /* Ensures button is above other content */
+        }
+        .lang-toggle:hover {
+            transform: rotate(360deg) scale(1.2); /* Rotates and scales on hover */
+            box-shadow: 0 0 12px rgba(0,0,0,0.2); /* Adds shadow on hover */
+            opacity: 1; /* Fully opaque on hover */
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); } /* Starts transparent and slightly offset */
+            100% { opacity: 1; transform: translateY(0); } /* Fades in to full opacity and original position */
+        }
+
+        /* Animated button styles (for main navigation buttons) */
+        .animated-button {
+            display: inline-block; /* Allows padding and margin */
+            padding: 0.6rem 1.25rem; /* Padding inside buttons */
+            background: #2e2e2e; /* Dark background color */
+            color: #ffffff; /* White text color */
+            text-decoration: none; /* Removes underline from links */
+            border-radius: 8px; /* Rounded corners */
+            font-weight: normal; /* Normal font weight */
+            transition: background 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+        }
+        .animated-button:hover {
+            background: #444444; /* Slightly lighter background on hover */
+            transform: scale(1.05); /* Slightly enlarges button on hover */
+        }
+
+        /* Language toggle wrapper and label */
+        .lang-toggle-wrapper {
+            position: fixed; /* Fixed position */
+            top: 1rem; /* Distance from top */
+            right: 1rem; /* Distance from right */
+            display: flex; /* Enables flexbox */
+            flex-direction: column; /* Stacks button and label vertically */
+            align-items: center; /* Centers items horizontally */
+            z-index: 9999; /* Ensures it's on top */
+        }
+        .lang-label {
+            position: absolute; /* Positioned relative to the wrapper */
+            top: 2.5rem; /* Positioned below the flag button */
+            /* Centering the label under the button: */
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap; /* Prevents label text from wrapping */
+            z-index: 10000; /* Ensures label is above the button's hover effect if needed */
+            margin-top: 0.3rem; /* Small space between button and label */
+            background: rgba(0, 0, 0, 0.75); /* Semi-transparent black background */
+            color: white; /* White text */
+            padding: 0.2rem 0.5rem; /* Padding within the label */
+            border-radius: 4px; /* Rounded corners for the label */
+            font-size: 0.7rem; /* Small font size for the label */
+            opacity: 0; /* Hidden by default */
+            /* transform: translateY(-5px); */ /* Initial transform for animation (adjusted for centering) */
+            transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+            pointer-events: none; /* Label doesn't interfere with mouse events */
+        }
+        .lang-toggle-wrapper:hover .lang-label {
+            opacity: 1; /* Shows label on wrapper hover */
+            /* transform: translateY(0); */ /* Final transform for animation (adjusted for centering) */
+        }
+
+        /* Specific styles for elements within the main content area */
+        h1 {
+            font-size: 2.75rem; /* Large font size for main heading */
+            color: #000000; /* Black color */
+            margin-bottom: 0.25rem; /* Small margin below heading */
+            animation: fadeIn 1.5s ease-out; /* Fade-in animation */
+        }
+        /* Default paragraph style within main-content-wrapper, not section p */
+        .main-content-wrapper > p {
+            font-size: 1.25rem; /* Font size for introductory paragraph */
+            color: #000000; /* Black color */
+            margin-top: 0; /* No top margin */
+            animation: fadeIn 2s ease-out; /* Fade-in animation */
+        }
+        .button-group {
+            display: flex; /* Enables flexbox */
+            flex-wrap: wrap; /* Allows buttons to wrap on smaller screens */
+            justify-content: center; /* Centers buttons */
+            gap: 1rem; /* Space between buttons */
+            row-gap: 0.75rem; /* Space between rows of buttons if they wrap */
+            margin-top: 2rem; /* Space above button group */
+            animation: fadeIn 2.5s ease-out; /* Fade-in animation */
+        }
+        section { /* General styling for content sections */
+            max-width: 700px; /* Limits width of sections for readability */
+            margin-top: 3rem; /* Space above sections */
+            text-align: left; /* Left-aligns text within sections */
+            color: #000000; /* Black text color */
+            animation: fadeIn 3.25s ease-out; /* Fade-in animation with slight delay */
+        }
+        section h2 {
+            color: #000000; /* Black color for section headings */
+            font-size: 1.75rem; /* Font size for section headings */
+            margin-bottom: 1rem; /* Space below section headings */
+        }
+        section p { /* Paragraphs within sections */
+            font-size: 1rem; /* Standard font size for section text */
+            line-height: 1.6; /* Improved line spacing for readability */
+            color: #000000; /* Black color */
+        }
+        #contact h2 { /* Specific adjustment for contact section heading if needed */
+            font-size: 1.5rem; /* Slightly smaller for "Get in Touch" */
+        }
+        #contact form {
+            display: flex; /* Enables flexbox */
+            flex-direction: column; /* Stacks form elements vertically */
+            gap: 1rem; /* Space between form elements */
+        }
+        #contact input,
+        #contact textarea {
+            padding: 0.75rem; /* Padding inside input fields */
+            border-radius: 5px; /* Rounded corners for input fields */
+            border: 1px solid #ccc; /* Light grey border */
+            font-family: Georgia, serif; /* Consistent font */
+            font-size: 1rem; /* Standard font size */
+            width: 100%; /* Full width of the form container */
+            box-sizing: border-box; /* Includes padding and border in width */
+        }
+        #contact button[type="submit"] {
+            background-color: #2e2e2e; /* Dark background for submit button */
+            color: #ffffff; /* White text */
+            border: none; /* No border */
+            font-weight: bold; /* Bold text */
+            cursor: pointer; /* Pointer cursor */
+            padding: 0.75rem; /* Padding */
+            border-radius: 5px; /* Rounded corners */
+            transition: background 0.3s; /* Smooth background transition on hover */
+        }
+        #contact button[type="submit"]:hover {
+            background-color: #444444; /* Lighter background on hover */
+        }
+        .form-response { /* For displaying messages after form submission */
+            margin-top: 1rem; /* Space above the message */
+            font-size: 1rem; /* Standard font size */
+            color: green; /* Green color for success messages (can be changed for errors) */
+            display: none; /* Hidden by default */
+        }
+    </style>
 </head>
 <body>
-
-  {% include home-button.html %}
-  {% include lang-toggle.html %}
-
-  <div class="main-content-wrapper">
-    <h1 data-en="Kianosh F. Solheim" data-no="Kianosh F. Solheim">Kianosh F. Solheim</h1>
-    <p data-en="Comparative Politics Student" data-no="Statsvitenskapsstudent">Comparative Politics Student</p>
-
-    <div class="button-group">
-      <a href="{{ "/recommendations.html" | relative_url }}" class="animated-button" data-en="Recommendations" data-no="Anbefalinger">Recommendations</a>
-      <a href="{{ "/curriculum-vitae.html" | relative_url }}" class="animated-button" data-en="Curriculum Vitae" data-no="Curriculum Vitae">Curriculum Vitae</a>
+    <div class="lang-toggle-wrapper">
+        <button onclick="toggleLanguage()" title="Change Language" class="lang-toggle"></button>
+        <div class="lang-label" id="langLabel">Change Language</div>
     </div>
 
-    <div class="social-icons">
-      <a href="https://www.facebook.com/solheim.online/" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
-      <a href="https://www.instagram.com/solheim.online" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-      <a href="https://www.linkedin.com/in/kianosh-solheim" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-      <a href="https://bsky.app/profile/solheim.online" title="Bluesky"><i class="fa-brands fa-bluesky"></i></a>
-      <a href="https://www.threads.net/@solheim.online" title="Threads"><i class="fa-brands fa-threads"></i></a>
-      <a href="https://x.com/Kianosh_Solheim" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+    <script>
+        // Function to toggle language between English ('en') and Norwegian ('no')
+        function toggleLanguage() {
+            const currentLang = localStorage.getItem('lang') || 'en'; // Get current language or default to English
+            const newLang = currentLang === 'en' ? 'no' : 'en'; // Switch to the other language
+            localStorage.setItem('lang', newLang); // Store the new language choice
+
+            // Update all elements with data-en and data-no attributes
+            document.querySelectorAll('[data-en], [data-no]').forEach(el => {
+                // Handle placeholders for input and textarea elements
+                if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                    el.placeholder = el.getAttribute(`data-${newLang}`);
+                } else { // Handle textContent for other elements
+                    el.textContent = el.getAttribute(`data-${newLang}`);
+                }
+            });
+            updateFlag(newLang); // Update the flag icon and tooltip
+        }
+
+        // Function to update the flag icon and tooltip text
+        function updateFlag(lang) {
+            const label = document.getElementById('langLabel');
+            if (label) { // Update tooltip text
+                label.textContent = lang === 'en' ? 'Change Language to Norwegian' : 'Change Language to English';
+            }
+            // Set the background image of the toggle button to the appropriate flag
+            const flagUrl = lang === 'en'
+                ? 'https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Norway.svg' // Norwegian flag
+                : 'https://flagcdn.com/gb.svg'; // UK flag (for English)
+            const button = document.querySelector('button[onclick="toggleLanguage()"]');
+            if (button) {
+                button.style.backgroundImage = `url(${flagUrl})`;
+            }
+        }
+
+        // Event listener for when the DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            const lang = localStorage.getItem('lang') || 'en'; // Get stored language or default to English
+            // Set initial language for all elements
+            document.querySelectorAll('[data-en], [data-no]').forEach(el => {
+                if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                    el.placeholder = el.getAttribute(`data-${lang}`);
+                } else {
+                    el.textContent = el.getAttribute(`data-${lang}`);
+                }
+            });
+            updateFlag(lang); // Set initial flag icon and tooltip
+        });
+    </script>
+
+    <div class="main-content-wrapper">
+        <h1 data-en="Kianosh F. Solheim" data-no="Kianosh F. Solheim">Kianosh F. Solheim</h1>
+        <p data-en="Comparative Politics Student" data-no="Statsvitenskapsstudent">Comparative Politics Student</p>
+
+        <div class="button-group">
+            <a href="https://www.solheim.online/Recommendations.html" class="animated-button" data-en="Recommendations" data-no="Anbefalinger">Recommendations</a>
+            <a href="https://www.solheim.online/Curriculum%20Vitae.html" class="animated-button" data-en="Curriculum Vitae" data-no="Curriculum Vitae">Curriculum Vitae</a>
+        </div>
+
+        <div class="social-icons">
+            <a href="https://www.facebook.com/solheim.online/" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://www.instagram.com/solheim.online" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/kianosh-solheim" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="https://bsky.app/profile/solheim.online" title="Bluesky"><i class="fa-brands fa-bluesky"></i></a>
+            <a href="https://www.threads.net/@solheim.online" title="Threads"><i class="fa-brands fa-threads"></i></a>
+            <a href="https://x.com/Kianosh_Solheim" title="Twitter"><i class="fa-brands fa-twitter"></i></a> </div>
+
+        <section id="about">
+            <h2 data-en="About Me" data-no="Om Meg">About Me</h2>
+            <p data-en="I’m a Comparative Politics student passionate about democracy, participation, and communication. With a background in writing and activism, I work to make political ideas accessible and engaging. My interests include populism, social movements, and the future of democratic institutions. I also enjoy contributing to public debate and visual storytelling through digital media."
+               data-no="Jeg er en statsvitenskapsstudent med lidenskap for demokrati, deltakelse og kommunikasjon. Med bakgrunn fra skriving og aktivisme jobber jeg for å gjøre politiske ideer tilgjengelige og engasjerende. Mine interesser inkluderer populisme, sosiale bevegelser og fremtiden til demokratiske institusjoner. Jeg liker også å bidra til offentlig debatt og visuell historiefortelling gjennom digitale medier.">
+                I’m a Comparative Politics student passionate about democracy, participation, and communication. With a background in writing and activism, I work to make political ideas accessible and engaging. My interests include populism, social movements, and the future of democratic institutions. I also enjoy contributing to public debate and visual storytelling through digital media.
+            </p>
+        </section>
+
+        <section id="contact">
+            <h2 data-en="Get in Touch" data-no="Ta Kontakt">Get in Touch</h2>
+            <form action="https://formspree.io/f/meogbldy" method="POST">
+                <input type="text" name="name" placeholder="Your Name" data-en="Your Name" data-no="Ditt navn" required />
+                <input type="email" name="email" placeholder="Your Email" data-en="Your Email" data-no="Din e-post" required />
+                <textarea name="message" rows="5" placeholder="Your Message" data-en="Your Message" data-no="Din melding" required></textarea>
+                <button type="submit" data-en="Send Message" data-no="Send melding">Send Message</button>
+            </form>
+            <div class="form-response" id="formResponse"></div> </section>
     </div>
 
-    <section id="about">
-      <h2 data-en="About Me" data-no="Om Meg">About Me</h2>
-      <p data-en="I’m a Comparative Politics student passionate about democracy, participation, and communication. With a background in writing and activism, I work to make political ideas accessible and engaging. My interests include populism, social movements, and the future of democratic institutions. I also enjoy contributing to public debate and visual storytelling through digital media."
-         data-no="Jeg er en statsvitenskapsstudent med lidenskap for demokrati, deltakelse og kommunikasjon. Med bakgrunn fra skriving og aktivisme jobber jeg for å gjøre politiske ideer tilgjengelige og engasjerende. Mine interesser inkluderer populisme, sosiale bevegelser og fremtiden til demokratiske institusjoner. Jeg liker også å bidra til offentlig debatt og visuell historiefortelling gjennom digitale medier.">…</p>
-    </section>
+    <div id="footer-placeholder"></div>
 
-    <section id="contact">
-      <h2 data-en="Get in Touch" data-no="Ta Kontakt">Get in Touch</h2>
-      <form action="https://formspree.io/f/meogbldy" method="POST">
-        <input type="text" name="name" placeholder="Your Name" data-en="Your Name" data-no="Ditt navn" required />
-        <input type="email" name="email" placeholder="Your Email" data-en="Your Email" data-no="Din e-post" required />
-        <textarea name="message" rows="5" placeholder="Your Message" data-en="Your Message" data-no="Din melding" required></textarea>
-        <button type="submit" data-en="Send Message" data-no="Send melding">Send Message</button>
-      </form>
-      <div class="form-response" id="formResponse"></div>
-    </section>
+    <script>
+        // JavaScript for handling Formspree submission and displaying a message
+        const contactForm = document.querySelector('#contact form');
+        const formResponseDiv = document.getElementById('formResponse');
 
-  </div>
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent default form submission
+                const formData = new FormData(contactForm);
 
-  {% include footer.html %}
-
-  <script>
-    // Formspree handler, language applyLanguage & updateFlag assumed loaded site‑wide
-    // … keep existing JS for form & language as part of default layout
-  </script>
+                fetch(contactForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                }).then(response => {
+                    if (response.ok) {
+                        contactForm.reset(); // Clear the form
+                        formResponseDiv.textContent = localStorage.getItem('lang') === 'no' ? 'Takk! Meldingen din er sendt.' : 'Thanks! Your message has been sent.';
+                        formResponseDiv.style.color = 'green';
+                        formResponseDiv.style.display = 'block';
+                    } else {
+                        response.json().then(data => {
+                            if (Object.hasOwn(data, 'errors')) {
+                                formResponseDiv.textContent = data["errors"].map(error => error["message"]).join(", ");
+                            } else {
+                                formResponseDiv.textContent = localStorage.getItem('lang') === 'no' ? 'Oops! Det oppstod et problem med å sende meldingen din.' : 'Oops! There was a problem submitting your form.';
+                            }
+                            formResponseDiv.style.color = 'red';
+                            formResponseDiv.style.display = 'block';
+                        }).catch(() => { // Catch error if response.json() fails or if it's not a JSON error from Formspree
+                             formResponseDiv.textContent = localStorage.getItem('lang') === 'no' ? 'Oops! Det oppstod et problem med å sende meldingen din. Sjekk nettverkstilkoblingen.' : 'Oops! There was a problem submitting your form. Check your network connection.';
+                             formResponseDiv.style.color = 'red';
+                             formResponseDiv.style.display = 'block';
+                        });
+                    }
+                }).catch(error => {
+                    formResponseDiv.textContent = localStorage.getItem('lang') === 'no' ? 'Oops! Det oppstod et problem med å sende meldingen din. Sjekk nettverkstilkoblingen.' : 'Oops! There was a problem submitting your form. Check your network connection.';
+                    formResponseDiv.style.color = 'red';
+                    formResponseDiv.style.display = 'block';
+                });
 </body>
 </html>
+
