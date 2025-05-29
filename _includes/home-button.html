@@ -1,14 +1,13 @@
-<!-- _includes/home-button.html -->
+<!-- Font Awesome 6.5.0 for the house icon (load once per page/layout) -->
 <link
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-  integrity="sha384-O8s0JpZj+YhXl3UgX/KsOP0Nj2XxOyIGbMh8RvVI6sVjeLP0RAPp3/1+j+KtM6X0"
   crossorigin="anonymous"
   referrerpolicy="no-referrer"
 />
 
 <style>
-  /* Home button wrapper */
+  /* Home button styles (from your CV page) */
   .home-button-wrapper {
     position: fixed;
     top: 1rem;
@@ -18,23 +17,24 @@
     align-items: center;
     z-index: 9999;
   }
-  /* The circular home icon */
   .home-button {
     background: transparent;
     border: none;
     border-radius: 50%;
     width: 2rem;
     height: 2rem;
+    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
+    text-decoration: none;
     opacity: 0.5;
-    cursor: pointer;
     transition: transform 0.4s ease, box-shadow 0.4s ease, opacity 0.4s ease;
+    z-index: 9999;
   }
   .home-button:hover {
     transform: rotate(360deg) scale(1.2);
-    box-shadow: 0 0 12px rgba(0,0,0,0.2);
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
     opacity: 1;
   }
   .home-button i {
@@ -45,14 +45,15 @@
   .home-button:hover i {
     color: #000;
   }
-  /* Tooltip label under the icon */
   .home-label {
     position: absolute;
     top: 2.5rem;
     left: 2.5rem;
     white-space: nowrap;
+    z-index: 10000;
+    margin-top: 0.3rem;
     background: rgba(0, 0, 0, 0.75);
-    color: #fff;
+    color: white;
     padding: 0.2rem 0.5rem;
     border-radius: 4px;
     font-size: 0.7rem;
@@ -60,22 +61,10 @@
     transform: translateY(-5px);
     transition: opacity 0.3s ease, transform 0.3s ease;
     pointer-events: none;
-    z-index: 10000;
   }
   .home-button-wrapper:hover .home-label {
     opacity: 1;
     transform: translateY(0);
-  }
-
-  @media (max-width: 768px) {
-    .home-button-wrapper {
-      top: 0.5rem;
-      left: 0.5rem;
-    }
-    .home-label {
-      top: 2rem;
-      left: 2rem;
-    }
   }
 </style>
 
@@ -83,12 +72,7 @@
   <a href="{{ "/" | relative_url }}" class="home-button" title="Return to Home">
     <i class="fas fa-house"></i>
   </a>
-  <div
-    class="home-label"
-    id="homeLabel"
-    data-en="Return to Home"
-    data-no="Tilbake til Hjem"
-  >
+  <div class="home-label" id="homeLabel" data-en="Return to Home" data-no="Tilbake til Hjem">
     Return to Home
   </div>
 </div>
