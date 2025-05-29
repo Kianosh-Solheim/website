@@ -5,26 +5,52 @@ lang: en
 ---
 
 <h1 data-en="Kianosh F. Solheim" data-no="Kianosh F. Solheim">Kianosh F. Solheim</h1>
-<p data-en="Comparative Politics Student" data-no="Statsvitenskapsstudent">Comparative Politics Student</p>
+<p data-en="Comparative Politics Student" data-no="Statsvitenskapsstudent">
+  Comparative Politics Student
+</p>
 
 <div class="button-group">
-  <a href="{{ '/recommendations.html' | relative_url }}" class="animated-button" data-en="Recommendations" data-no="Anbefalinger">Recommendations</a>
-  <a href="{{ '/curriculum-vitae.html' | relative_url }}" class="animated-button" data-en="Curriculum Vitae" data-no="Curriculum Vitae">Curriculum Vitae</a>
+  <a href="{{ '/recommendations.html' | relative_url }}"
+     class="animated-button"
+     data-en="Recommendations"
+     data-no="Anbefalinger">
+    Recommendations
+  </a>
+  <a href="{{ '/curriculum-vitae.html' | relative_url }}"
+     class="animated-button"
+     data-en="Curriculum Vitae"
+     data-no="Curriculum Vitae">
+    Curriculum Vitae
+  </a>
 </div>
 
 <div class="social-icons">
-  <a href="https://www.facebook.com/solheim.online/" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
-  <a href="https://www.instagram.com/solheim.online" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-  <a href="https://www.linkedin.com/in/kianosh-solheim" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-  <a href="https://bsky.app/profile/solheim.online" title="Bluesky"><i class="fa-brands fa-bluesky"></i></a>
-  <a href="https://www.threads.net/@solheim.online" title="Threads"><i class="fa-brands fa-threads"></i></a>
-  <a href="https://x.com/Kianosh_Solheim" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+  <a href="https://www.facebook.com/solheim.online/" title="Facebook">
+    <i class="fa-brands fa-facebook"></i>
+  </a>
+  <a href="https://www.instagram.com/solheim.online" title="Instagram">
+    <i class="fa-brands fa-instagram"></i>
+  </a>
+  <a href="https://www.linkedin.com/in/kianosh-solheim" title="LinkedIn">
+    <i class="fa-brands fa-linkedin"></i>
+  </a>
+  <a href="https://bsky.app/profile/solheim.online" title="Bluesky">
+    <i class="fa-brands fa-bluesky"></i>
+  </a>
+  <a href="https://www.threads.net/@solheim.online" title="Threads">
+    <i class="fa-brands fa-threads"></i>
+  </a>
+  <a href="https://x.com/Kianosh_Solheim" title="Twitter">
+    <i class="fa-brands fa-twitter"></i>
+  </a>
 </div>
 
 <section id="about">
   <h2 data-en="About Me" data-no="Om Meg">About Me</h2>
-  <p data-en="I’m a Comparative Politics student passionate about democracy, participation, and communication. With a background in writing and activism, I work to make political ideas accessible and engaging. My interests include populism, social movements, and the future of democratic institutions. I also enjoy contributing to public debate and visual storytelling through digital media."
-     data-no="Jeg er en statsvitenskapsstudent med lidenskap for demokrati, deltakelse og kommunikasjon. Med bakgrunn fra skriving og aktivisme jobber jeg for å gjøre politiske ideer tilgjengelige og engasjerende. Mine interesser inkluderer populisme, sosiale bevegelser og fremtiden til demokratiske institusjoner. Jeg liker også å bidra til offentlig debatt og visuell historiefortelling gjennom digitale medier.">
+  <p
+    data-en="I’m a Comparative Politics student passionate about democracy, participation, and communication. With a background in writing and activism, I work to make political ideas accessible and engaging. My interests include populism, social movements, and the future of democratic institutions. I also enjoy contributing to public debate and visual storytelling through digital media."
+    data-no="Jeg er en statsvitenskapsstudent med lidenskap for demokrati, deltakelse og kommunikasjon. Med bakgrunn fra skriving og aktivisme jobber jeg for å gjøre politiske ideer tilgjengelige og engasjerende. Mine interesser inkluderer populisme, sosiale bevegelser og fremtiden til demokratiske institusjoner. Jeg liker også å bidra til offentlig debatt og visuell historiefortelling gjennom digitale medier."
+  >
     I’m a Comparative Politics student passionate about democracy, participation, and communication. With a background in writing and activism, I work to make political ideas accessible and engaging. My interests include populism, social movements, and the future of democratic institutions. I also enjoy contributing to public debate and visual storytelling through digital media.
   </p>
 </section>
@@ -32,61 +58,77 @@ lang: en
 <section id="contact">
   <h2 data-en="Get in Touch" data-no="Ta Kontakt">Get in Touch</h2>
   <form action="https://formspree.io/f/meogbldy" method="POST">
-    <input type="text" name="name" placeholder="Your Name" data-en="Your Name" data-no="Ditt navn" required />
-    <input type="email" name="email" placeholder="Your Email" data-en="Your Email" data-no="Din e-post" required />
-    <textarea name="message" rows="5" placeholder="Your Message" data-en="Your Message" data-no="Din melding" required></textarea>
-    <button type="submit" data-en="Send Message" data-no="Send melding">Send Message</button>
+    <input
+      type="text"
+      name="name"
+      placeholder="Your Name"
+      data-en="Your Name"
+      data-no="Ditt navn"
+      required
+    />
+    <input
+      type="email"
+      name="email"
+      placeholder="Your Email"
+      data-en="Your Email"
+      data-no="Din e-post"
+      required
+    />
+    <textarea
+      name="message"
+      rows="5"
+      placeholder="Your Message"
+      data-en="Your Message"
+      data-no="Din melding"
+      required
+    ></textarea>
+    <button type="submit" data-en="Send Message" data-no="Send melding">
+      Send Message
+    </button>
   </form>
   <div class="form-response" id="formResponse"></div>
 </section>
 
 <script>
+  // Formspree AJAX submission
   const contactForm = document.querySelector('#contact form');
   const formResponseDiv = document.getElementById('formResponse');
 
   if (contactForm) {
-    contactForm.addEventListener('submit', function(event) {
+    contactForm.addEventListener('submit', async (event) => {
       event.preventDefault();
       const formData = new FormData(contactForm);
 
-      fetch(contactForm.action, {
-        method: 'POST',
-        body: formData,
-        headers: { 'Accept': 'application/json' }
-      }).then(response => {
+      try {
+        const response = await fetch(contactForm.action, {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        });
         if (response.ok) {
           contactForm.reset();
-          formResponseDiv.textContent = localStorage.getItem('lang') === 'no'
-            ? 'Takk! Meldingen din er sendt.'
-            : 'Thanks! Your message has been sent.';
+          formResponseDiv.textContent =
+            localStorage.getItem('lang') === 'no'
+              ? 'Takk! Meldingen din er sendt.'
+              : 'Thanks! Your message has been sent.';
           formResponseDiv.style.color = 'green';
-          formResponseDiv.style.display = 'block';
         } else {
-          response.json().then(data => {
-            if (data.errors) {
-              formResponseDiv.textContent = data.errors.map(e => e.message).join(', ');
-            } else {
-              formResponseDiv.textContent = localStorage.getItem('lang') === 'no'
-                ? 'Oops! Det oppstod et problem med å sende meldingen din.'
-                : 'Oops! There was a problem submitting your form.';
-            }
-            formResponseDiv.style.color = 'red';
-            formResponseDiv.style.display = 'block';
-          }).catch(() => {
-            formResponseDiv.textContent = localStorage.getItem('lang') === 'no'
-              ? 'Oops! Det oppstod et problem med å sende meldingen din. Sjekk nettverkstilkoblingen.'
-              : 'Oops! There was a problem submitting your form. Check your network connection.';
-            formResponseDiv.style.color = 'red';
-            formResponseDiv.style.display = 'block';
-          });
+          const data = await response.json();
+          formResponseDiv.textContent = data.errors
+            ? data.errors.map(e => e.message).join(', ')
+            : (localStorage.getItem('lang') === 'no'
+               ? 'Oops! Det oppstod et problem med å sende meldingen din.'
+               : 'Oops! There was a problem submitting your form.');
+          formResponseDiv.style.color = 'red';
         }
-      }).catch(() => {
-        formResponseDiv.textContent = localStorage.getItem('lang') === 'no'
-          ? 'Oops! Det oppstod et problem med å sende meldingen din. Sjekk nettverkstilkoblingen.'
-          : 'Oops! There was a problem submitting your form. Check your network connection.';
+      } catch {
+        formResponseDiv.textContent =
+          localStorage.getItem('lang') === 'no'
+            ? 'Oops! Det oppstod et problem med å sende meldingen din. Sjekk nettverkstilkoblingen.'
+            : 'Oops! There was a problem submitting your form. Check your network connection.';
         formResponseDiv.style.color = 'red';
-        formResponseDiv.style.display = 'block';
-      });
+      }
+      formResponseDiv.style.display = 'block';
     });
   }
 </script>
